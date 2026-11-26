@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Path of Peace | Guidance, Recitation & Kalmas</title>
+  <title>Path of Peace | Guidance, Recitation, Kalmas & Tasbih</title>
   <style>
     :root {
       --bg: #f2f7f4;
@@ -15,6 +15,33 @@
       --text: #1b2825;
       --muted: #5b6b66;
       --border: #d7e4de;
+      --input-bg: #fafcfb;
+    }
+
+    body.theme-sand {
+      --bg: #f8f5ef;
+      --card: #fffdf9;
+      --primary: #7c5228;
+      --primary-soft: #f4ece1;
+      --gold: #b58419;
+      --gold-soft: #fbf3df;
+      --text: #2a2118;
+      --muted: #6e5f50;
+      --border: #e4d8c8;
+      --input-bg: #fcf9f4;
+    }
+
+    body.theme-midnight {
+      --bg: #0f1916;
+      --card: #162420;
+      --primary: #34a87e;
+      --primary-soft: #1d332c;
+      --gold: #d9a432;
+      --gold-soft: #2a2416;
+      --text: #ecf4f1;
+      --muted: #a3b8b1;
+      --border: #274038;
+      --input-bg: #1b2c27;
     }
 
     * {
@@ -25,21 +52,22 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(180deg, #e5f0eb 0%, var(--bg) 100%);
+      background: var(--bg);
       color: var(--text);
       padding: 18px;
       display: flex;
       justify-content: center;
       align-items: flex-start;
+      transition: background 0.25s ease, color 0.25s ease;
     }
 
     .app {
       width: 100%;
-      max-width: 900px;
+      max-width: 920px;
       background: var(--card);
       border-radius: 18px;
       border: 1px solid var(--border);
-      box-shadow: 0 14px 34px rgba(20, 83, 62, 0.08);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
       overflow: hidden;
     }
 
@@ -66,6 +94,24 @@
       opacity: 0.92;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .theme-btn {
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
     .btn-calm-top {
       background: #f6c945;
       color: #16231e;
@@ -87,8 +133,8 @@
 
     .nav-tab {
       flex: 1;
-      min-width: 140px;
-      padding: 12px 14px;
+      min-width: 130px;
+      padding: 12px 12px;
       border: none;
       background: transparent;
       color: var(--primary);
@@ -99,7 +145,7 @@
     }
 
     .nav-tab.active {
-      background: #fff;
+      background: var(--card);
       border-bottom-color: var(--primary);
     }
 
@@ -138,7 +184,7 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       font-size: 15px;
-      background: #fafcfb;
+      background: var(--input-bg);
       color: var(--text);
     }
 
@@ -162,18 +208,14 @@
     }
 
     .chip {
-      background: #eef6f2;
+      background: var(--primary-soft);
       color: var(--primary);
-      border: 1px solid #c6ddd3;
+      border: 1px solid var(--border);
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
-    }
-
-    .chip:hover {
-      background: var(--primary-soft);
     }
 
     .btn {
@@ -195,8 +237,9 @@
     }
 
     .btn-secondary {
-      background: #e9f0ed;
+      background: var(--primary-soft);
       color: var(--text);
+      border: 1px solid var(--border);
     }
 
     .btn-gold {
@@ -221,7 +264,7 @@
     }
 
     .tone-banner {
-      background: #f6faf8;
+      background: var(--input-bg);
       border: 1px dashed var(--primary);
       border-radius: 12px;
       padding: 12px 15px;
@@ -249,7 +292,7 @@
 
     .tilawat-box {
       background: var(--gold-soft);
-      border: 1px solid #ebd79f;
+      border: 1px solid var(--border);
       border-left: 4px solid var(--gold);
       border-radius: 12px;
       padding: 16px;
@@ -262,7 +305,7 @@
       font-size: 24px;
       line-height: 1.95;
       font-weight: 700;
-      color: #0e3b2c;
+      color: var(--primary);
       margin: 10px 0;
       font-family: "Traditional Arabic", "Geeza Pro", "Segoe UI", Tahoma, sans-serif;
     }
@@ -271,7 +314,7 @@
       margin-top: 18px;
       padding: 16px;
       border-radius: 12px;
-      background: #f8faf9;
+      background: var(--input-bg);
       border: 1px solid var(--border);
     }
 
@@ -283,7 +326,7 @@
     }
 
     .saved-item {
-      background: #fff;
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 10px 12px;
@@ -306,7 +349,7 @@
       margin-top: 12px;
       padding: 14px;
       border-radius: 10px;
-      background: #eef6f2;
+      background: var(--primary-soft);
       border-left: 4px solid var(--primary);
       display: none;
     }
@@ -326,7 +369,7 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 14px;
-      background: #fff;
+      background: var(--card);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -338,6 +381,38 @@
       font-size: 15px;
     }
 
+    /* Tasbih Box */
+    .tasbih-box {
+      text-align: center;
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--primary-soft);
+      border: 1px solid var(--border);
+    }
+
+    .tasbih-circle {
+      width: 150px;
+      height: 150px;
+      margin: 14px auto;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      border: 5px solid rgba(255, 255, 255, 0.35);
+      font-size: 34px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+      user-select: none;
+    }
+
+    .tasbih-circle:active {
+      transform: scale(0.96);
+    }
+
     .status-note {
       font-size: 12.5px;
       color: var(--muted);
@@ -347,7 +422,7 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(14, 28, 23, 0.58);
+      background: rgba(14, 28, 23, 0.62);
       display: none;
       justify-content: center;
       align-items: center;
@@ -362,11 +437,12 @@
     .modal-card {
       width: 100%;
       max-width: 480px;
-      background: #fff;
+      background: var(--card);
+      color: var(--text);
       border-radius: 18px;
       padding: 22px;
       border: 1px solid var(--border);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
       text-align: center;
     }
 
@@ -394,15 +470,17 @@
         <h1>Path of Peace</h1>
         <p>A welcoming space for every age, background, and belief — guidance, recitation &amp; calm</p>
       </div>
-      <button type="button" class="btn-calm-top" onclick="openInstantCalm()">
-        Instant 60s Calm
-      </button>
+      <div class="header-actions">
+        <button type="button" class="theme-btn" onclick="cycleTheme()">Switch Theme</button>
+        <button type="button" class="btn-calm-top" onclick="openInstantCalm()">Instant 60s Calm</button>
+      </div>
     </header>
 
     <div class="nav-tabs">
       <button type="button" class="nav-tab active" onclick="switchTab('guidanceTab', this)">Guidance &amp; Concerns</button>
       <button type="button" class="nav-tab" onclick="switchTab('tilawatTab', this)">Quran Recitation</button>
       <button type="button" class="nav-tab" onclick="switchTab('kalmaTab', this)">Six Kalmas</button>
+      <button type="button" class="nav-tab" onclick="switchTab('tasbihTab', this)">Tasbih &amp; Duas</button>
     </div>
 
     <div class="content">
@@ -467,6 +545,7 @@
             <button type="button" class="chip" onclick="quickFillMood('I cannot make a decision and feel confused')">Confused / Decision</button>
             <button type="button" class="chip" onclick="quickFillMood('I am feeling unwell and tired')">Unwell / Health</button>
             <button type="button" class="chip" onclick="quickFillMood('I am going through a difficult time')">Hardship / Sad</button>
+            <button type="button" class="chip" onclick="quickFillMood('I feel lonely and having family tension')">Relationships / Lonely</button>
           </div>
 
           <div class="form-group">
@@ -517,6 +596,7 @@
               <button type="button" class="btn btn-gold btn-sm" onclick="playGuidanceTilawat()">Play Recitation</button>
               <button type="button" class="btn btn-secondary btn-sm" onclick="speakGuidanceSummary()">Listen to Explanation</button>
               <button type="button" class="btn btn-secondary btn-sm" onclick="saveCurrentFavorite()">Save Favorite Verse</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="copyGuidanceText()">Copy Guidance</button>
               <button type="button" class="btn btn-secondary btn-sm" onclick="stopAllAudio()">Stop</button>
             </div>
             <div id="audioStatus" class="status-note"></div>
@@ -676,6 +756,74 @@
           </div>
         </div>
       </div>
+
+      <!-- TAB 4: INTERACTIVE TASBIH & EVERYDAY DUAS -->
+      <div id="tasbihTab" class="panel">
+        <h2>Digital Tasbih &amp; Daily Supplications</h2>
+        <p class="hint">Tap the circle to count remembrance peacefully, or listen to short everyday duas.</p>
+
+        <div class="tasbih-box">
+          <div class="form-group" style="max-width: 340px; margin: 0 auto 10px;">
+            <label for="dhikrSelect">Choose Dhikr</label>
+            <select id="dhikrSelect" onchange="resetTasbih()">
+              <option value="سُبْحَانَ اللَّهِ|SubhanAllah (Glory be to Allah)">SubhanAllah — سُبْحَانَ اللَّهِ</option>
+              <option value="الْحَمْدُ لِلَّهِ|Alhamdulillah (All praise is for Allah)">Alhamdulillah — الْحَمْدُ لِلَّهِ</option>
+              <option value="اللَّهُ أَكْبَرُ|Allahu Akbar (Allah is the Greatest)">Allahu Akbar — اللَّهُ أَكْبَرُ</option>
+              <option value="أَسْتَغْفِرُ اللَّهَ|Astaghfirullah (I seek Allah's forgiveness)">Astaghfirullah — أَسْتَغْفِرُ اللَّهَ</option>
+            </select>
+          </div>
+
+          <div id="tasbihArabic" class="arabic" style="text-align: center; font-size: 28px;">سُبْحَانَ اللَّهِ</div>
+          <div id="tasbihMeaning" class="hint">SubhanAllah (Glory be to Allah)</div>
+
+          <div class="tasbih-circle" onclick="incrementTasbih()">
+            <span id="tasbihCount">0</span>
+            <small style="font-size: 12px; font-weight: 600;">Tap to Count</small>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakCurrentDhikr()">Listen</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="resetTasbih()">Reset</button>
+          </div>
+          <div id="tasbihMilestone" class="status-note"></div>
+        </div>
+
+        <h3 style="margin-top: 22px;">Short Everyday Duas</h3>
+        <div class="kalma-grid">
+          <div class="kalma-card">
+            <div>
+              <div class="kalma-title">Dua in Distress (Prophet Yunus's Supplication)</div>
+              <div class="arabic">لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ</div>
+              <p class="hint">There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers. (Surah Al-Anbya 21:87)</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ')">
+              Listen
+            </button>
+          </div>
+
+          <div class="kalma-card">
+            <div>
+              <div class="kalma-title">Dua for Ease &amp; Clarity</div>
+              <div class="arabic">رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي</div>
+              <p class="hint">My Lord, expand for me my chest [with assurance] and ease for me my task. (Surah Ta-Ha 20:25-26)</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي')">
+              Listen
+            </button>
+          </div>
+
+          <div class="kalma-card">
+            <div>
+              <div class="kalma-title">Dua for Protection &amp; Peace</div>
+              <div class="arabic">حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ</div>
+              <p class="hint">Sufficient for us is Allah, and [He is] the best Disposer of affairs. (Surah Ali 'Imran 3:173)</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ')">
+              Listen
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -714,6 +862,10 @@
     let currentAyahCode = "013028";
     let currentRefTitle = "Surah Ar-Ra'd (13:28) — Peace in remembrance";
     let breathTimer = null;
+    let tasbihCounter = 0;
+
+    const themes = ["", "theme-sand", "theme-midnight"];
+    let currentThemeIdx = 0;
 
     const topics = [
       {
@@ -783,6 +935,11 @@
         ayahCode: "013028"
       }
     ];
+
+    function cycleTheme() {
+      currentThemeIdx = (currentThemeIdx + 1) % themes.length;
+      document.body.className = themes[currentThemeIdx];
+    }
 
     function switchTab(tabId, btnEl) {
       stopAllAudio();
@@ -904,6 +1061,22 @@
       showStep("step3");
     }
 
+    function copyGuidanceText() {
+      const title = document.getElementById("matchedTopicTitle").innerText;
+      const reason = document.getElementById("outReason").innerText;
+      const solution = document.getElementById("outSolution").innerText;
+      const arabic = document.getElementById("outArabic").innerText;
+      const ref = document.getElementById("outRef").innerText;
+      const trans = document.getElementById("outTranslation").innerText;
+
+      const fullText = `${title}\n\nWhy: ${reason}\n\nWay Forward: ${solution}\n\n${arabic}\n${ref}\n${trans}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(fullText).then(() => {
+          document.getElementById("audioStatus").innerText = "Guidance copied to clipboard.";
+        });
+      }
+    }
+
     function handleCheckin(state) {
       const box = document.getElementById("followupSupport");
       const msg = document.getElementById("followupMessage");
@@ -914,6 +1087,33 @@
       } else {
         msg.innerText = "It is okay if the weight hasn't lifted yet. You don't have to rush healing — try this short remembrance and let your shoulders drop:";
       }
+    }
+
+    function incrementTasbih() {
+      tasbihCounter++;
+      document.getElementById("tasbihCount").innerText = tasbihCounter;
+      const note = document.getElementById("tasbihMilestone");
+      if (tasbihCounter === 33) {
+        note.innerText = "33 completed — a calm milestone.";
+      } else if (tasbihCounter === 100) {
+        note.innerText = "100 completed — steady remembrance brings stillness.";
+      } else {
+        note.innerText = "";
+      }
+    }
+
+    function resetTasbih() {
+      tasbihCounter = 0;
+      document.getElementById("tasbihCount").innerText = "0";
+      document.getElementById("tasbihMilestone").innerText = "";
+      const val = document.getElementById("dhikrSelect").value.split("|");
+      document.getElementById("tasbihArabic").innerText = val[0];
+      document.getElementById("tasbihMeaning").innerText = val[1];
+    }
+
+    function speakCurrentDhikr() {
+      const val = document.getElementById("dhikrSelect").value.split("|");
+      speakArabic(val[0]);
     }
 
     function getFavorites() {
