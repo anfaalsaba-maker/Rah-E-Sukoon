@@ -1,53 +1,86 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Path of Peace (راہِ سکون) | رہنمائی، تلاوت اور کلمات</title>
+  <title>Path of Peace | Guidance, Recitation & Kalmas</title>
   <style>
     :root {
-      --bg: #f3f7f5;
+      --bg: #f2f7f4;
       --card: #ffffff;
       --primary: #14533e;
-      --primary-soft: #e4f1ec;
-      --gold: #b8891d;
-      --gold-soft: #fdf7e7;
-      --text: #1c2826;
-      --muted: #5c6b66;
-      --border: #d8e4df;
+      --primary-soft: #e3f1ec;
+      --gold: #b58419;
+      --gold-soft: #fdf7e6;
+      --text: #1b2825;
+      --muted: #5b6b66;
+      --border: #d7e4de;
     }
 
-    * { box-sizing: border-box; font-family: "Segoe UI", Tahoma, Arial, sans-serif; }
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
 
     body {
       margin: 0;
-      background: linear-gradient(180deg, #e8f1ed 0%, var(--bg) 100%);
+      min-height: 100vh;
+      background: linear-gradient(180deg, #e5f0eb 0%, var(--bg) 100%);
       color: var(--text);
       padding: 18px;
       display: flex;
       justify-content: center;
-      min-height: 100vh;
+      align-items: flex-start;
     }
 
     .app {
       width: 100%;
-      max-width: 860px;
+      max-width: 880px;
       background: var(--card);
       border-radius: 18px;
-      box-shadow: 0 12px 32px rgba(20, 83, 62, 0.08);
       border: 1px solid var(--border);
+      box-shadow: 0 14px 34px rgba(20, 83, 62, 0.08);
       overflow: hidden;
     }
 
     header {
       background: var(--primary);
       color: #fff;
-      padding: 22px 24px;
-      text-align: center;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    header h1 { margin: 0; font-size: 26px; letter-spacing: 0.3px; }
-    header p { margin: 6px 0 0; font-size: 14px; opacity: 0.92; }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0.2px;
+    }
+
+    header p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      opacity: 0.92;
+    }
+
+    .btn-calm-top {
+      background: #f6c945;
+      color: #16231e;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+    }
+
+    .btn-calm-top:hover {
+      filter: brightness(0.97);
+    }
 
     .nav-tabs {
       display: flex;
@@ -58,7 +91,7 @@
 
     .nav-tab {
       flex: 1;
-      min-width: 150px;
+      min-width: 140px;
       padding: 12px 14px;
       border: none;
       background: transparent;
@@ -74,12 +107,17 @@
       border-bottom-color: var(--primary);
     }
 
-    .content { padding: 22px; }
-    .panel { display: none; }
-    .panel.active { display: block; }
+    .content {
+      padding: 22px;
+    }
 
-    .step { display: none; }
-    .step.active { display: block; }
+    .panel, .step {
+      display: none;
+    }
+
+    .panel.active, .step.active {
+      display: block;
+    }
 
     .grid-2 {
       display: grid;
@@ -87,8 +125,16 @@
       gap: 14px;
     }
 
-    .form-group { margin-bottom: 15px; }
-    label { display: block; font-weight: 700; margin-bottom: 6px; font-size: 14px; }
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
 
     input, select, textarea {
       width: 100%;
@@ -100,9 +146,17 @@
       color: var(--text);
     }
 
-    textarea { min-height: 110px; resize: vertical; }
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
 
-    .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .hint {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 5px;
+      line-height: 1.5;
+    }
 
     .btn {
       background: var(--primary);
@@ -118,59 +172,114 @@
       gap: 6px;
     }
 
-    .btn:hover { opacity: 0.93; }
-    .btn-secondary { background: #eaf0ed; color: var(--text); }
-    .btn-gold { background: var(--gold); color: #fff; }
-    .btn-sm { padding: 8px 12px; font-size: 13px; }
+    .btn:hover {
+      opacity: 0.93;
+    }
+
+    .btn-secondary {
+      background: #e9f0ed;
+      color: var(--text);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #fff;
+    }
+
+    .btn-sm {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
 
     .badge {
       display: inline-block;
       background: var(--primary-soft);
       color: var(--primary);
-      padding: 6px 12px;
-      border-radius: 20px;
+      padding: 6px 13px;
+      border-radius: 999px;
       font-size: 13px;
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .group-note {
-      background: #f7faf9;
+    .tone-banner {
+      background: #f6faf8;
       border: 1px dashed var(--primary);
-      border-radius: 10px;
-      padding: 12px 14px;
+      border-radius: 12px;
+      padding: 12px 15px;
       font-size: 14px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      line-height: 1.55;
     }
 
     .card {
       background: var(--primary-soft);
-      border-right: 4px solid var(--primary);
+      border-left: 4px solid var(--primary);
       border-radius: 12px;
       padding: 16px;
       margin-top: 14px;
     }
 
+    .card h3 {
+      margin: 12px 0 6px;
+      font-size: 16px;
+    }
+
+    .card h3:first-child {
+      margin-top: 0;
+    }
+
     .tilawat-box {
       background: var(--gold-soft);
       border: 1px solid #ebd79f;
-      border-right: 4px solid var(--gold);
+      border-left: 4px solid var(--gold);
       border-radius: 12px;
       padding: 16px;
       margin-top: 14px;
     }
 
     .arabic {
-      font-size: 22px;
+      direction: rtl;
+      text-align: right;
+      font-size: 24px;
       line-height: 1.95;
       font-weight: 700;
       color: #0e3b2c;
       margin: 10px 0;
+      font-family: "Traditional Arabic", "Geeza Pro", "Segoe UI", Tahoma, sans-serif;
     }
 
-    .kalma-list {
+    .checkin-box {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #f8faf9;
+      border: 1px solid var(--border);
+    }
+
+    .checkin-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .followup-support {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 10px;
+      background: #eef6f2;
+      border-left: 4px solid var(--primary);
+      display: none;
+    }
+
+    .followup-support.active {
+      display: block;
+    }
+
+    .kalma-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
       gap: 14px;
       margin-top: 12px;
     }
@@ -180,298 +289,433 @@
       border-radius: 12px;
       padding: 14px;
       background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .kalma-title {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 15px;
     }
 
     .status-note {
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--muted);
       margin-top: 8px;
+    }
+
+    /* Instant Calm Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(14, 28, 23, 0.58);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      z-index: 999;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
+      text-align: center;
+    }
+
+    .breath-circle {
+      width: 120px;
+      height: 120px;
+      margin: 16px auto;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      border: 3px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      color: var(--primary);
+      transition: transform 1s ease;
     }
   </style>
 </head>
 <body>
   <div class="app">
     <header>
-      <h1>Path of Peace (راہِ سکون)</h1>
-      <p>ہر عمر، ہر جنس، ہر پس منظر اور ہر عقیدے کے انسان کے لیے ہمدردی، حکمت، تلاوت اور سکون</p>
+      <div>
+        <h1>Path of Peace</h1>
+        <p>A welcoming space for every age, background, and belief — guidance, recitation &amp; calm</p>
+      </div>
+      <button type="button" class="btn-calm-top" onclick="openInstantCalm()">
+        Instant 60s Calm
+      </button>
     </header>
 
     <div class="nav-tabs">
-      <button class="nav-tab active" onclick="switchTab('guidanceTab', this)">مسئلہ اور رہنمائی</button>
-      <button class="nav-tab" onclick="switchTab('tilawatTab', this)">تلاوتِ قرآن</button>
-      <button class="nav-tab" onclick="switchTab('kalmaTab', this)">چھ کلماتِ طیبہ</button>
+      <button class="nav-tab active" onclick="switchTab('guidanceTab', this)">Guidance &amp; Concerns</button>
+      <button class="nav-tab" onclick="switchTab('tilawatTab', this)">Quran Recitation</button>
+      <button class="nav-tab" onclick="switchTab('kalmaTab', this)">Six Kalmas</button>
     </div>
 
     <div class="content">
       <!-- TAB 1: GUIDANCE FLOW -->
       <div id="guidanceTab" class="panel active">
 
-        <!-- Step 1: Profile -->
+        <!-- Step 1: Inclusive Onboarding -->
         <div id="step1" class="step active">
-          <h2>پہلا قدم: آپ کا تعارف (ہر کسی کے لیے کھلا)</h2>
-          <p class="hint">تعلیم بتانا بالکل اختیاری ہے۔ اگر کوئی تعلیم یافتہ نہیں ہے یا نہیں بتانا چاہتا تو بھی بلا جھجھک آگے بڑھ سکتا ہے۔</p>
+          <h2>Step 1: Tell Us About Yourself</h2>
+          <p class="hint">
+            Open to everyone regardless of faith or background. Education is completely optional — if you have no formal education or prefer not to share, you can continue right away.
+          </p>
 
           <div class="grid-2">
             <div class="form-group">
-              <label>عمر (Age) *</label>
-              <input type="number" id="age" min="1" max="120" placeholder="مثلاً: 8، 24، 62" />
+              <label for="age">Age *</label>
+              <input type="number" id="age" min="1" max="120" placeholder="e.g., 9, 25, 64" />
             </div>
 
             <div class="form-group">
-              <label>جینڈر (Gender)</label>
+              <label for="gender">Gender</label>
               <select id="gender">
-                <option value="female">فی میل / خاتون / بچی</option>
-                <option value="male">میل / مرد / بچہ</option>
-                <option value="prefer_not">نہیں بتانا چاہتے</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="prefer_not">Prefer not to say</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label>ازدواجی حیثیت (Marital Status)</label>
+              <label for="maritalStatus">Marital Status</label>
               <select id="maritalStatus">
-                <option value="single">غیر شادی شدہ / کم عمر</option>
-                <option value="married">شادی شدہ</option>
-                <option value="other">دیگر / نہیں بتانا چاہتے</option>
+                <option value="single">Single / Young</option>
+                <option value="married">Married</option>
+                <option value="other">Other / Prefer not to say</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label>تعلیم (Education - Optional)</label>
+              <label for="education">Education (Optional)</label>
               <select id="education">
-                <option value="not_given">نہیں بتانا / تعلیم نہیں ہے</option>
-                <option value="basic">پرائمری یا اس سے کم</option>
-                <option value="school_college">میٹرک / انٹر</option>
-                <option value="higher">گریجویشن یا اس سے اوپر</option>
+                <option value="not_specified">Prefer not to say / No formal education</option>
+                <option value="primary_below">Primary or below</option>
+                <option value="secondary_inter">High school / Intermediate</option>
+                <option value="graduate_above">Graduate or above</option>
               </select>
             </div>
           </div>
 
-          <button class="btn" onclick="goToStep2()">آگے بڑھیں</button>
+          <button type="button" class="btn" onclick="goToStep2()">Continue</button>
         </div>
 
-        <!-- Step 2: Discuss Problem -->
+        <!-- Step 2: Share Concern -->
         <div id="step2" class="step">
           <div id="groupBadge" class="badge"></div>
-          <div id="groupNoteBox" class="group-note"></div>
-          <h2>اپنا مسئلہ یا دل کی بات ڈسکس کریں</h2>
+          <div id="toneBanner" class="tone-banner"></div>
+
+          <h2>Share What Is Weighing on Your Mind</h2>
 
           <div class="form-group">
-            <label>قاری صاحب کی آواز منتخب کریں (تلاوت کے لیے)</label>
+            <label for="qariSelectGuidance">Preferred Reciter (Qari)</label>
             <select id="qariSelectGuidance">
-              <option value="Alafasy_128kbps">مشاري راشد العفاسي</option>
-              <option value="Abdul_Basit_Mujawwad_128kbps">عبد الباسط عبد الصمد</option>
-              <option value="Maher_AlMuaiqly_128kbps">ماهر المعيقلي</option>
+              <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
+              <option value="Abdul_Basit_Mujawwad_128kbps">Abdul Basit Abdus Samad</option>
+              <option value="Maher_AlMuaiqly_128kbps">Maher Al Muaiqly</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>اپنا مسئلہ لکھیں یا بول کر بتائیں</label>
-            <textarea id="problemInput" placeholder="مثلاً: مجھے غصہ بہت آتا ہے، فیصلہ نہیں کر پا رہا، بیماری/تکلیف ہے، بے چینی ہے، یا گھر کا مسئلہ ہے..."></textarea>
-            <div style="margin-top:8px;">
-              <button type="button" class="btn btn-secondary btn-sm" onclick="startVoiceInput()">🎤 بول کر مسئلہ بتائیں</button>
+            <label for="problemInput">Type or Speak Your Concern</label>
+            <textarea id="problemInput" placeholder="For example: I feel anxious or afraid, I get angry easily, I cannot make a decision, I am unwell, or I have family stress..."></textarea>
+            <div style="margin-top: 8px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="startVoiceInput()">
+                Speak Your Concern
+              </button>
               <span id="voiceStatus" class="hint"></span>
             </div>
           </div>
 
-          <button class="btn btn-secondary" onclick="goToStep1()">واپس</button>
-          <button class="btn" onclick="analyzeProblem()">وجہ، حل اور آیت دیکھیں</button>
+          <button type="button" class="btn btn-secondary" onclick="goToStep1()">Back</button>
+          <button type="button" class="btn" onclick="analyzeProblem()">See Reason, Solution &amp; Verse</button>
         </div>
 
-        <!-- Step 3: Reason, Solution, Ayah & Tilawat -->
+        <!-- Step 3: Guidance + Recitation + Check-In -->
         <div id="step3" class="step">
           <div id="profileSummaryBadge" class="badge"></div>
           <h2 id="matchedTopicTitle"></h2>
 
           <div class="card">
-            <h3>1. یہ مسئلہ کیوں پیش آ سکتا ہے؟</h3>
+            <h3>1. Why This Can Happen (Islamic Perspective)</h3>
             <p id="outReason"></p>
 
-            <h3>2. حل اور عملی رہنمائی</h3>
+            <h3>2. Practical &amp; Spiritual Way Forward</h3>
             <p id="outSolution"></p>
           </div>
 
           <div class="tilawat-box">
-            <h3>3. متعلقہ قرآنی آیت اور تلاوت</h3>
+            <h3>3. Related Quranic Verse &amp; Recitation</h3>
             <div id="outArabic" class="arabic"></div>
             <p><strong id="outRef"></strong></p>
             <p id="outTranslation"></p>
 
-            <audio id="guidanceAudio" controls style="width:100%; margin-top:8px;"></audio>
-            <div style="margin-top:10px;">
-              <button class="btn btn-gold btn-sm" onclick="playGuidanceTilawat()">▶ تلاوت سنیں</button>
-              <button class="btn btn-secondary btn-sm" onclick="speakFullGuidance()">🔊 ترجمہ اور رہنمائی سنیں</button>
-              <button class="btn btn-secondary btn-sm" onclick="stopAllAudio()">⏹ روکیں</button>
+            <audio id="guidanceAudio" controls style="width: 100%; margin-top: 8px;"></audio>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button type="button" class="btn btn-gold btn-sm" onclick="playGuidanceTilawat()">Play Recitation</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="speakGuidanceSummary()">Listen to Explanation</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="stopAllAudio()">Stop</button>
             </div>
             <div id="audioStatus" class="status-note"></div>
           </div>
 
-          <div style="margin-top:20px;">
-            <button class="btn btn-secondary" onclick="goToStep2()">دوسرا مسئلہ ڈسکس کریں</button>
-            <button class="btn" onclick="goToStep1()">پروفائل تبدیل کریں</button>
+          <!-- Signature Feature: After-Guidance Check-In -->
+          <div class="checkin-box">
+            <strong>How do you feel right now?</strong>
+            <div class="checkin-actions">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="handleCheckin('calmer')">A bit calmer</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="handleCheckin('heavy')">Still feeling heavy</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="goToStep2()">Share another concern</button>
+            </div>
+
+            <div id="followupSupport" class="followup-support">
+              <p id="followupMessage" style="margin: 0 0 8px;"></p>
+              <div class="arabic" style="font-size: 20px;">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</div>
+              <p class="hint" style="margin: 0 0 10px;">
+                <em>SubhanAllahi wa bihamdihi</em> — Glory and praise be to Allah. Take one slow breath and give yourself patience.
+              </p>
+              <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('سُبْحَانَ اللَّهِ وَبِحَمْدِهِ')">
+                Listen to Dhikr
+              </button>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-secondary" onclick="goToStep2()">New Concern</button>
+            <button type="button" class="btn" onclick="goToStep1()">Change Profile</button>
           </div>
         </div>
       </div>
 
-      <!-- TAB 2: TILAWAT PLAYER -->
+      <!-- TAB 2: QURAN RECITATION -->
       <div id="tilawatTab" class="panel">
-        <h2>مشہور قراء کی تلاوت سنیں</h2>
-        <p class="hint">دل کے سکون کے لیے آیت منتخب کریں اور مشہور قاری کی آواز میں تلاوت سنیں۔</p>
+        <h2>Listen to Quran Recitation</h2>
+        <p class="hint">Select a verse and reciter for calm and reflection.</p>
 
         <div class="grid-2">
           <div class="form-group">
-            <label>قاری منتخب کریں</label>
+            <label for="qariSelectTab">Reciter</label>
             <select id="qariSelectTab">
-              <option value="Alafasy_128kbps">مشاري راشد العفاسي</option>
-              <option value="Abdul_Basit_Mujawwad_128kbps">عبد الباسط عبد الصمد</option>
-              <option value="Maher_AlMuaiqly_128kbps">ماهر المعيقلي</option>
+              <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
+              <option value="Abdul_Basit_Mujawwad_128kbps">Abdul Basit Abdus Samad</option>
+              <option value="Maher_AlMuaiqly_128kbps">Maher Al Muaiqly</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>آیت منتخب کریں</label>
+            <label for="ayahSelectTab">Verse</label>
             <select id="ayahSelectTab">
-              <option value="013028">سورۃ الرعد (13) - آیت 28 (دل کا سکون)</option>
-              <option value="094006">سورۃ الشرح (94) - آیت 6 (مشکل کے ساتھ آسانی)</option>
-              <option value="002286">سورۃ البقرۃ (2) - آیت 286 (طاقت سے بڑھ کر بوجھ نہیں)</option>
-              <option value="026080">سورۃ الشعراء (26) - آیت 80 (شفا اور صحت)</option>
+              <option value="013028">Surah Ar-Ra'd (13:28) — Peace in remembrance</option>
+              <option value="094006">Surah Ash-Sharh (94:6) — Ease with hardship</option>
+              <option value="002286">Surah Al-Baqarah (2:286) — Burden within capacity</option>
+              <option value="026080">Surah Ash-Shu'ara (26:80) — Healing &amp; recovery</option>
             </select>
           </div>
         </div>
 
-        <button class="btn btn-gold" onclick="playSelectedTabTilawat()">▶ تلاوت چلائیں</button>
-        <button class="btn btn-secondary" onclick="stopAllAudio()">⏹ روکیں</button>
-        <audio id="tabAudio" controls style="width:100%; margin-top:14px;"></audio>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="button" class="btn btn-gold" onclick="playSelectedTabTilawat()">Play Recitation</button>
+          <button type="button" class="btn btn-secondary" onclick="stopAllAudio()">Stop</button>
+        </div>
+
+        <audio id="tabAudio" controls style="width: 100%; margin-top: 14px;"></audio>
         <div id="tabAudioStatus" class="status-note"></div>
       </div>
 
-      <!-- TAB 3: ALL 6 KALMAS -->
+      <!-- TAB 3: ALL SIX KALMAS WITH ORIGINAL ARABIC -->
       <div id="kalmaTab" class="panel">
-        <h2>چھ کلماتِ طیبہ اور ذکر</h2>
-        <p class="hint">ہر کلمہ پڑھنے اور سننے کے لیے بٹن دبائیں۔</p>
+        <h2>The Six Kalmas</h2>
+        <p class="hint">Original Arabic text, English meaning, and audio playback for each Kalma.</p>
 
-        <div class="kalma-list">
+        <div class="kalma-grid">
           <div class="kalma-card">
-            <strong>پہلا کلمہ (طیب)</strong>
-            <div class="arabic" style="font-size:17px;">لَا إِلٰهَ إِلَّا اللهُ مُحَمَّدٌ رَّسُولُ اللهِ</div>
-            <p class="hint">اللہ کے سوا کوئی معبود نہیں، محمد ﷺ اللہ کے رسول ہیں۔</p>
-            <button class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا اللهُ مُحَمَّدٌ رَّسُولُ اللهِ')">🔊 سنیں</button>
+            <div>
+              <div class="kalma-title">First Kalma (Tayyab)</div>
+              <div class="arabic">لَا إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَّسُولُ اللَّهِ</div>
+              <p class="hint">There is no deity worthy of worship except Allah, and Muhammad (peace be upon him) is the Messenger of Allah.</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَّسُولُ اللَّهِ')">
+              Listen
+            </button>
           </div>
 
           <div class="kalma-card">
-            <strong>دوسرا کلمہ (شہادت)</strong>
-            <div class="arabic" style="font-size:17px;">أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ</div>
-            <p class="hint">میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی معبود نہیں، وہ اکیلا ہے اس کا کوئی شریک نہیں۔</p>
-            <button class="btn btn-gold btn-sm" onclick="speakArabic('أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ')">🔊 سنیں</button>
+            <div>
+              <div class="kalma-title">Second Kalma (Shahadah)</div>
+              <div class="arabic">أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
+              <p class="hint">I bear witness that there is no deity except Allah, alone without partner, and I bear witness that Muhammad is His servant and Messenger.</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ')">
+              Listen
+            </button>
           </div>
 
           <div class="kalma-card">
-            <strong>تیسرا کلمہ (تمجید)</strong>
-            <div class="arabic" style="font-size:17px;">سُبْحَانَ اللهِ وَالْحَمْدُ لِلّٰهِ وَلَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ</div>
-            <p class="hint">اللہ پاک ہے، تمام تعریفیں اللہ کے لیے ہیں، اللہ کے سوا کوئی معبود نہیں اور اللہ سب سے بڑا ہے۔</p>
-            <button class="btn btn-gold btn-sm" onclick="speakArabic('سُبْحَانَ اللهِ وَالْحَمْدُ لِلّٰهِ وَلَا إِلٰهَ إِلَّا اللهُ وَاللهُ أَكْبَرُ')">🔊 سنیں</button>
+            <div>
+              <div class="kalma-title">Third Kalma (Tamjeed)</div>
+              <div class="arabic">سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ</div>
+              <p class="hint">Glory be to Allah, all praise is for Allah, there is no deity except Allah, and Allah is the Greatest.</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ')">
+              Listen
+            </button>
           </div>
 
           <div class="kalma-card">
-            <strong>چوتھا کلمہ (توحید)</strong>
-            <div class="arabic" style="font-size:17px;">لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ</div>
-            <p class="hint">بادشاہی اور تعریف اللہ ہی کے لیے ہے، وہی زندگی دیتا ہے اور موت دیتا ہے۔</p>
-            <button class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ')">🔊 سنیں</button>
+            <div>
+              <div class="kalma-title">Fourth Kalma (Tawheed)</div>
+              <div class="arabic">لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ حَيٌّ لَا يَمُوتُ أَبَدًا أَبَدًا</div>
+              <p class="hint">There is no deity except Allah alone; to Him belongs all dominion and praise, He gives life and causes death, and He is Ever-Living and never dies.</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ')">
+              Listen
+            </button>
           </div>
 
           <div class="kalma-card">
-            <strong>پانچواں کلمہ (استغفار)</strong>
-            <div class="arabic" style="font-size:17px;">أَسْتَغْفِرُ اللهَ رَبِّي مِنْ كُلِّ ذَنْبٍ أَذْنَبْتُهُ عَمْدًا أَوْ خَطَأً</div>
-            <p class="hint">میں اپنے رب اللہ سے ہر اس گناہ کی معافی مانگتا ہوں جو جان بوجھ کر یا بھول کر ہوا۔</p>
-            <button class="btn btn-gold btn-sm" onclick="speakArabic('أَسْتَغْفِرُ اللهَ رَبِّي مِنْ كُلِّ ذَنْبٍ أَذْنَبْتُهُ عَمْدًا أَوْ خَطَأً')">🔊 سنیں</button>
+            <div>
+              <div class="kalma-title">Fifth Kalma (Astaghfar)</div>
+              <div class="arabic">أَسْتَغْفِرُ اللَّهَ رَبِّي مِنْ كُلِّ ذَنْبٍ أَذْنَبْتُهُ عَمْدًا أَوْ خَطَأً سِرًّا أَوْ عَلَانِيَةً</div>
+              <p class="hint">I seek forgiveness from Allah, my Lord, for every sin I committed intentionally or by mistake, in secret or in open.</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('أَسْتَغْفِرُ اللَّهَ رَبِّي مِنْ كُلِّ ذَنْبٍ أَذْنَبْتُهُ عَمْدًا أَوْ خَطَأً سِرًّا أَوْ عَلَانِيَةً')">
+              Listen
+            </button>
           </div>
 
           <div class="kalma-card">
-            <strong>چھٹا کلمہ (ردِ کفر)</strong>
-            <div class="arabic" style="font-size:17px;">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ أَنْ أُشْرِكَ بِكَ شَيْئًا وَأَنَا أَعْلَمُ</div>
-            <p class="hint">اے اللہ! میں تیری پناہ مانگتا ہوں اس بات سے کہ جان بوجھ کر تیرے ساتھ کسی کو شریک ٹھہراؤں۔</p>
-            <button class="btn btn-gold btn-sm" onclick="speakArabic('اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ أَنْ أُشْرِكَ بِكَ شَيْئًا وَأَنَا أَعْلَمُ')">🔊 سنیں</button>
+            <div>
+              <div class="kalma-title">Sixth Kalma (Radd-e-Kufr)</div>
+              <div class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ أَنْ أُشْرِكَ بِكَ شَيْئًا وَأَنَا أَعْلَمُ وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ</div>
+              <p class="hint">O Allah, I seek refuge in You from knowingly associating anything with You, and I seek Your forgiveness for what I do not know.</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ أَنْ أُشْرِكَ بِكَ شَيْئًا وَأَنَا أَعْلَمُ وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ')">
+              Listen
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Instant 60-Second Calm Modal -->
+  <div id="calmModal" class="modal-backdrop">
+    <div class="modal-card">
+      <h2 style="margin: 0 0 6px;">Instant 60-Second Calm</h2>
+      <p class="hint" style="margin: 0;">No forms needed — follow the breath and listen to Surah Ash-Sharh (94:6).</p>
+
+      <div id="breathCircle" class="breath-circle">
+        <span id="breathPhase">Breathe In</span>
+        <small id="breathCount" style="font-weight: 500; margin-top: 4px;">4s</small>
+      </div>
+
+      <p id="calmMessage" style="font-size: 14px; line-height: 1.55;">
+        With every hardship comes ease. Relax your shoulders and jaw.
+      </p>
+
+      <audio id="modalAudio" controls style="width: 100%; margin-top: 8px;"></audio>
+
+      <div style="margin-top: 14px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+        <button type="button" class="btn btn-gold btn-sm" onclick="playModalRecitation()">Play Verse Audio</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeInstantCalm()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     let profile = {
-      age: 20,
+      age: 24,
       gender: "prefer_not",
       maritalStatus: "single",
-      education: "not_given"
+      education: "not_specified"
     };
 
     let currentAyahCode = "013028";
+    let breathTimer = null;
 
     const topics = [
       {
         key: "anger",
-        keywords: ["غصہ", "غصے", "چڑچڑا", "جھگڑا", "anger", "angry", "mad"],
-        title: "غصے اور جذباتی دباؤ کے بارے میں رہنمائی",
-        reason: "غصہ اکثر تھکاوٹ، زیادتی کے احساس یا اندرونی دباؤ کی وجہ سے ابھرتا ہے۔ اسلامی تعلیم میں غصہ پی جانے اور ضبط کرنے کو بڑی قدر دی گئی ہے۔",
-        solution: "غصہ آئے تو فوراً جواب نہ دیں، جگہ یا پوزیشن بدلیں، وضو کریں یا خاموشی اور نرمی اختیار کریں۔",
+        keywords: ["angry", "anger", "mad", "temper", "rage", "frustrated", "fight"],
+        title: "Guidance on Anger & Emotional Heat",
+        reason: "Anger often rises when we feel hurt, unheard, or overwhelmed. In Islamic teachings, controlling anger and choosing forgiveness brings real inner strength.",
+        solution: "Pause before replying, change your posture or step away for a moment, do wudu (ablution) or wash your face with cool water, and speak softly.",
         arabic: "وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ",
-        ref: "حوالہ: سورۃ آلِ عمران (3)، آیت 134",
-        translation: "ترجمہ: اور غصہ ضبط کرنے والے اور لوگوں سے درگزر (معاف) کرنے والے۔",
+        ref: "Reference: Surah Ali 'Imran (3:134)",
+        translation: "Meaning: '...and those who restrain anger and pardon people...'",
         ayahCode: "003134"
       },
       {
         key: "indecision",
-        keywords: ["فیصلہ", "سمجھ نہیں", "الجھن", "کنفیوز", "کیا کروں", "decide", "confused", "choice"],
-        title: "فیصلہ نہ کر پانے اور الجھن کے بارے میں رہنمائی",
-        reason: "جب کسی راستے کے فائدے اور نقصانات واضح نہ ہوں تو انسان تذبذب کا شکار ہو جاتا ہے۔ اسلام میں مشورے اور استخارے/بھروسے سے قدم بڑھانے کی تلقین ہے۔",
-        solution: "مسئلے کو چھوٹے حصوں میں بانٹیں، سمجھدار لوگوں سے مشورہ کریں، اور اللہ سے خیر کی دعا کر کے پختہ ارادہ کریں۔",
+        keywords: ["decide", "decision", "confused", "stuck", "choice", "unsure", "what should i do"],
+        title: "Guidance on Difficult Decisions & Confusion",
+        reason: "Uncertainty happens when outcomes feel unclear or multiple options pull us in different directions. Islam encourages thoughtful consultation (shura) and trust after making a sincere choice.",
+        solution: "Break the decision into small pros and cons, ask someone wise and trustworthy for advice, pray for guidance (Istikharah / sincere dua), and move forward steadily.",
         arabic: "فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ",
-        ref: "حوالہ: سورۃ آلِ عمران (3)، آیت 159",
-        translation: "ترجمہ: پھر جب تم فیصلہ (ارادہ) کر لو تو اللہ پر بھروسہ کرو۔",
+        ref: "Reference: Surah Ali 'Imran (3:159)",
+        translation: "Meaning: 'Then when you have decided, put your trust in Allah.'",
         ayahCode: "003159"
       },
       {
         key: "illness",
-        keywords: ["بیماری", "بیمار", "تکلیف", "درد", "صحت", "شفا", "بخار", "sick", "illness", "pain", "health"],
-        title: "بیماری، تکلیف اور صحت کی پریشانی کے بارے میں رہنمائی",
-        reason: "جسمانی یا ذہنی تکلیف انسان کو کمزور کر سکتی ہے، لیکن ایمان میں صبر، علاج اور شفا کی امید کو مضبوط رکھا جاتا ہے۔",
-        solution: "ڈاکٹر یا ماہر معالج سے مناسب علاج کروائیں، آرام کریں، صبر رکھیں اور شفا کے لیے دعا کریں۔",
+        keywords: ["sick", "ill", "illness", "pain", "health", "doctor", "fever", "unwell", "disease"],
+        title: "Guidance on Illness, Pain & Health Worries",
+        reason: "Physical or mental illness can feel exhausting and lonely. In faith, seeking proper treatment goes hand in hand with patience and hope in healing from Allah.",
+        solution: "Consult a qualified doctor or healthcare professional, rest without guilt, stay patient, and make sincere supplication for healing.",
         arabic: "وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ",
-        ref: "حوالہ: سورۃ الشعراء (26)، آیت 80",
-        translation: "ترجمہ: اور جب میں بیمار ہوتا ہوں تو وہی مجھے شفا دیتا ہے۔",
+        ref: "Reference: Surah Ash-Shu'ara (26:80)",
+        translation: "Meaning: 'And when I am ill, it is He who heals me.'",
         ayahCode: "026080"
       },
       {
-        key: "anxiety",
-        keywords: ["بے چینی", "ڈر", "خوف", "گھبراہٹ", "دباؤ", "ٹینشن", "anxiety", "fear", "stress", "tension"],
-        title: "بے چینی، خوف اور ذہنی دباؤ کے بارے میں رہنمائی",
-        reason: "جب ذہن مستقبل یا کسی ناخوشگوار خدشے میں الجھ جاتا ہے تو بے چینی بڑھتی ہے۔ اسلامی نقطۂ نظر سے دل کا حقیقی سکون اللہ کے ذکر اور بھروسے میں ہے۔",
-        solution: "لمبے سانس لیں، موجودہ وقت پر توجہ دیں، کسی بھروسے مند شخص سے بات کریں، اور ذکر و دعا کو اپنے دن کا حصہ بنائیں۔",
-        arabic: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
-        ref: "حوالہ: سورۃ الرعد (13)، آیت 28",
-        translation: "ترجمہ: خبردار! اللہ کی یاد ہی سے دلوں کو اطمینان نصیب ہوتا ہے۔",
-        ayahCode: "013028"
-      },
-      {
         key: "hardship",
-        keywords: ["مشکل", "تنگی", "رزق", "پریشانی", "مایوس", "غریب", "hardship", "money", "sad"],
-        title: "مشکل وقت اور پریشانی کے بارے میں رہنمائی",
-        reason: "زندگی میں آزمائشیں اور تنگی آتی رہتی ہیں، لیکن اسلام میں ہر تنگی کے ساتھ آسانی اور امید کا پیغام دیا گیا ہے۔",
-        solution: "مایوس نہ ہوں، صبر اور استقامت سے کام لیں، جائز کوشش جاری رکھیں اور مدد کے لیے اللہ سے دعا کریں۔",
+        keywords: ["hardship", "struggle", "money", "job", "broke", "difficult", "sad", "hopeless", "loss"],
+        title: "Guidance on Hardship & Difficult Times",
+        reason: "Difficult seasons test our endurance, yet Quranic guidance reminds us that hardship is never permanent and relief arrives alongside struggle.",
+        solution: "Focus on one small step today rather than the whole mountain, keep honest effort going, reach out for support, and hold onto hope.",
         arabic: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
-        ref: "حوالہ: سورۃ الشرح (94)، آیت 6",
-        translation: "ترجمہ: بے شک مشکل کے ساتھ آسانی ہے۔",
+        ref: "Reference: Surah Ash-Sharh (94:6)",
+        translation: "Meaning: 'For indeed, with hardship [will be] ease.'",
         ayahCode: "094006"
       },
       {
         key: "relationships",
-        keywords: ["گھر", "رشتے", "جھگڑا", "تنہائی", "اکیلا", "والدین", "شادی", "family", "lonely"],
-        title: "رشتوں، گھر کے ماحول یا تنہائی کے بارے میں رہنمائی",
-        reason: "بات چیت کی کمی، غصے یا غلط فہمی کی وجہ سے رشتوں میں دوری یا دل میں تنہائی پیدا ہو سکتی ہے۔",
-        solution: "نرمی، درگزر اور اچھے اخلاق سے بات کریں۔ اگر تنہائی محسوس ہو تو مثبت صحبت اور ذکر کو اپنائیں۔",
+        keywords: ["family", "parents", "marriage", "spouse", "lonely", "alone", "friend", "relationship", "home"],
+        title: "Guidance on Relationships, Home & Loneliness",
+        reason: "Misunderstandings, pride, or silence often create distance in relationships, while feeling alone can weigh heavily on the heart.",
+        solution: "Choose gentle words, listen to understand rather than win, forgive small faults, and stay connected with kind people and uplifting remembrance.",
         arabic: "وَقُولُوا لِلنَّاسِ حُسْنًا",
-        ref: "حوالہ: سورۃ البقرۃ (2)، آیت 83",
-        translation: "ترجمہ: اور لوگوں سے بھلی (اور نرم) بات کہو۔",
+        ref: "Reference: Surah Al-Baqarah (2:83)",
+        translation: "Meaning: 'And speak good [and gentle] words to people.'",
         ayahCode: "002083"
+      },
+      {
+        key: "anxiety",
+        keywords: ["anxious", "anxiety", "scared", "afraid", "fear", "panic", "stress", "worried", "worry"],
+        title: "Guidance on Anxiety, Fear & Restlessness",
+        reason: "When the mind races into 'what-if' scenarios, restlessness grows. From an Islamic perspective, true heart stillness is rooted in remembering Allah and trusting Him.",
+        solution: "Take slow deep breaths, ground yourself in this exact room and moment, talk to someone you trust, and keep calm remembrance part of your day.",
+        arabic: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+        ref: "Reference: Surah Ar-Ra'd (13:28)",
+        translation: "Meaning: 'Unquestionably, by the remembrance of Allah hearts are assured.'",
+        ayahCode: "013028"
       }
     ];
 
@@ -483,25 +727,27 @@
       if (btnEl) btnEl.classList.add("active");
     }
 
-    function getCategoryInfo(age, gender) {
-      let stage = "نوجوان / بالغ سیکشن";
-      let note = "یہ حصہ نوجوانوں اور بالغوں کے لیے ہے تاکہ وہ کھلے دل سے اپنی بات اور پریشانی شیئر کر سکیں۔";
+    function formatGender(gender) {
+      if (gender === "female") return "Females";
+      if (gender === "male") return "Males";
+      return "All Genders";
+    }
+
+    function getGroupDetails(age, gender) {
+      let stage = "Youth & Adults";
+      let toneNote = "A respectful, calm space to share what is on your mind and explore clear, practical guidance.";
 
       if (age < 13) {
-        stage = "بچوں کا سیکشن (Kids)";
-        note = "پیارے بچے! یہ جگہ آپ کے لیے ہے؛ یہاں آپ اپنا ڈر، غصہ یا کوئی بھی بات آسان الفاظ میں بتا سکتے ہیں۔";
+        stage = "Kids Space";
+        toneNote = "Welcome! You don't have to use big words here. Tell us what feels scary, upsetting, or confusing, and we'll keep things simple and kind.";
       } else if (age >= 60) {
-        stage = "بزرگوں کا سیکشن (Elders)";
-        note = "محترم بزرگ! آپ کے تجربے اور احترام کے ساتھ یہ حصہ سکون، دعا اور باہمی گفتگو کے لیے بنایا گیا ہے۔";
+        stage = "Elders Space";
+        toneNote = "Welcome with deep respect. This space is designed for comfort, dignity, peaceful recitation, and thoughtful reflection.";
       }
 
-      let gText = "سب کے لیے";
-      if (gender === "female") gText = "فی میلز";
-      else if (gender === "male") gText = "میلز";
-
       return {
-        label: `${stage} • ${gText}`,
-        note: note
+        label: `${stage} • ${formatGender(gender)}`,
+        note: toneNote
       };
     }
 
@@ -512,8 +758,8 @@
 
     function goToStep2() {
       const ageVal = parseInt(document.getElementById("age").value, 10);
-      if (!ageVal || ageVal < 1) {
-        alert("براہ کرم درست عمر درج کریں۔");
+      if (!ageVal || ageVal < 1 || ageVal > 120) {
+        alert("Please enter a valid age between 1 and 120.");
         return;
       }
 
@@ -524,43 +770,59 @@
         education: document.getElementById("education").value
       };
 
-      const info = getCategoryInfo(profile.age, profile.gender);
-      document.getElementById("groupBadge").innerText = info.label;
-      document.getElementById("groupNoteBox").innerText = info.note;
+      const details = getGroupDetails(profile.age, profile.gender);
+      document.getElementById("groupBadge").innerText = details.label;
+      document.getElementById("toneBanner").innerText = details.note;
       showStep("step2");
     }
 
-    function findBestTopic(text) {
+    function findMatchingTopic(text) {
       const lower = (text || "").toLowerCase();
-      let best = topics[3];
-      let highestScore = 0;
+      let best = topics[5]; // default to anxiety/restlessness
+      let bestScore = 0;
 
       for (const t of topics) {
         let score = 0;
         for (const kw of t.keywords) {
-          if (lower.includes(kw.toLowerCase())) score++;
+          if (lower.includes(kw)) score++;
         }
-        if (score > highestScore) {
-          highestScore = score;
+        if (score > bestScore) {
+          bestScore = score;
           best = t;
         }
       }
       return best;
     }
 
+    function adaptTextForAge(text, age, kind) {
+      if (age < 13) {
+        return kind === "reason"
+          ? `${text} Even kids feel big emotions sometimes, and asking for help is a smart step.`
+          : `${text} Talk to a trusted parent, teacher, or caring adult near you too.`;
+      }
+      if (age >= 60) {
+        return kind === "reason"
+          ? `${text} Carrying years of responsibility can make even small worries feel heavier.`
+          : `${text} Take things at a gentle pace and lean on steady prayer and peace of mind.`;
+      }
+      return text;
+    }
+
     function analyzeProblem() {
       stopAllAudio();
-      const userProblem = document.getElementById("problemInput").value.trim();
-      const matched = findBestTopic(userProblem);
+      document.getElementById("followupSupport").classList.remove("active");
+
+      const rawInput = document.getElementById("problemInput").value.trim();
+      const matched = findMatchingTopic(rawInput);
       currentAyahCode = matched.ayahCode;
 
-      const info = getCategoryInfo(profile.age, profile.gender);
+      const details = getGroupDetails(profile.age, profile.gender);
       document.getElementById("profileSummaryBadge").innerText =
-        `${info.label} • عمر: ${profile.age}`;
+        `${details.label} • Age ${profile.age}`;
 
       document.getElementById("matchedTopicTitle").innerText = matched.title;
-      document.getElementById("outReason").innerText = matched.reason;
-      document.getElementById("outSolution").innerText = matched.solution;
+      document.getElementById("outReason").innerText = adaptTextForAge(matched.reason, profile.age, "reason");
+      document.getElementById("outSolution").innerText = adaptTextForAge(matched.solution, profile.age, "solution");
       document.getElementById("outArabic").innerText = matched.arabic;
       document.getElementById("outRef").innerText = matched.ref;
       document.getElementById("outTranslation").innerText = matched.translation;
@@ -569,8 +831,20 @@
       showStep("step3");
     }
 
-    function buildEveryAyahUrl(qariFolder, ayahCode) {
-      return `https://everyayah.com/data/${qariFolder}/${ayahCode}.mp3`;
+    function handleCheckin(state) {
+      const box = document.getElementById("followupSupport");
+      const msg = document.getElementById("followupMessage");
+      box.classList.add("active");
+
+      if (state === "calmer") {
+        msg.innerText = "Alhamdulillah — even a small moment of calm matters. Keep that gentle pace going.";
+      } else {
+        msg.innerText = "It is okay if the weight hasn't lifted yet. You don't have to rush healing — try this short remembrance and let your shoulders drop:";
+      }
+    }
+
+    function buildEveryAyahUrl(qari, ayahCode) {
+      return `https://everyayah.com/data/${qari}/${ayahCode}.mp3`;
     }
 
     function playGuidanceTilawat() {
@@ -580,11 +854,11 @@
       const statusEl = document.getElementById("audioStatus");
 
       audioEl.src = buildEveryAyahUrl(qari, currentAyahCode);
-      statusEl.innerText = "تلاوت لوڈ ہو رہی ہے...";
+      statusEl.innerText = "Loading recitation...";
       audioEl.play().then(() => {
-        statusEl.innerText = "تلاوت جاری ہے۔";
+        statusEl.innerText = "Playing recitation.";
       }).catch(() => {
-        statusEl.innerText = "آڈیو چلانے کے لیے انٹرنیٹ کنکشن درکار ہے؛ متبادل آواز چلائی جا رہی ہے۔";
+        statusEl.innerText = "Could not stream audio; playing fallback voice.";
         speakArabic(document.getElementById("outArabic").innerText);
       });
     }
@@ -597,11 +871,11 @@
       const statusEl = document.getElementById("tabAudioStatus");
 
       audioEl.src = buildEveryAyahUrl(qari, ayahCode);
-      statusEl.innerText = "تلاوت لوڈ ہو رہی ہے...";
+      statusEl.innerText = "Loading recitation...";
       audioEl.play().then(() => {
-        statusEl.innerText = "تلاوت جاری ہے۔";
+        statusEl.innerText = "Playing recitation.";
       }).catch(() => {
-        statusEl.innerText = "آڈیو چلانے میں دشواری پیش آئی، براہ کرم انٹرنیٹ چیک کریں۔";
+        statusEl.innerText = "Unable to play audio right now. Please check your internet connection.";
       });
     }
 
@@ -614,16 +888,16 @@
       window.speechSynthesis.speak(u);
     }
 
-    function speakFullGuidance() {
+    function speakGuidanceSummary() {
       if (!("speechSynthesis" in window)) return;
       window.speechSynthesis.cancel();
+      const translation = document.getElementById("outTranslation").innerText;
       const reason = document.getElementById("outReason").innerText;
       const solution = document.getElementById("outSolution").innerText;
-      const translation = document.getElementById("outTranslation").innerText;
 
-      const u = new SpeechSynthesisUtterance(`${translation}۔ وجہ: ${reason}۔ حل: ${solution}`);
-      u.lang = "ur-PK";
-      u.rate = 0.95;
+      const u = new SpeechSynthesisUtterance(`${translation}. Why this happens: ${reason}. Way forward: ${solution}`);
+      u.lang = "en-US";
+      u.rate = 0.96;
       window.speechSynthesis.speak(u);
     }
 
@@ -635,7 +909,7 @@
 
     function stopAllAudio() {
       stopSpeech();
-      ["guidanceAudio", "tabAudio"].forEach(id => {
+      ["guidanceAudio", "tabAudio", "modalAudio"].forEach(id => {
         const el = document.getElementById(id);
         if (el) {
           el.pause();
@@ -649,26 +923,83 @@
       const statusEl = document.getElementById("voiceStatus");
 
       if (!SpeechRecognition) {
-        statusEl.innerText = "اس براؤزر میں وائس ان پٹ سپورٹ دستیاب نہیں ہے۔";
+        statusEl.innerText = "Voice input is not supported in this browser.";
         return;
       }
 
       const recognition = new SpeechRecognition();
-      recognition.lang = "ur-PK";
+      recognition.lang = "en-US";
       recognition.interimResults = false;
-      statusEl.innerText = "سن رہا ہوں، بولیں...";
+      statusEl.innerText = "Listening... please speak.";
 
-      recognition.onresult = function(event) {
+      recognition.onresult = function (event) {
         const transcript = event.results[0][0].transcript;
         document.getElementById("problemInput").value = transcript;
-        statusEl.innerText = "بات درج ہو گئی۔";
+        statusEl.innerText = "Captured your message.";
       };
 
-      recognition.onerror = function() {
-        statusEl.innerText = "آواز واضح نہیں آئی، دوبارہ کوشش کریں۔";
+      recognition.onerror = function () {
+        statusEl.innerText = "Couldn't hear clearly. Please try again.";
       };
 
       recognition.start();
+    }
+
+    function openInstantCalm() {
+      stopAllAudio();
+      document.getElementById("calmModal").classList.add("open");
+      startBreathingCycle();
+    }
+
+    function closeInstantCalm() {
+      document.getElementById("calmModal").classList.remove("open");
+      if (breathTimer) {
+        clearInterval(breathTimer);
+        breathTimer = null;
+      }
+      stopAllAudio();
+    }
+
+    function startBreathingCycle() {
+      if (breathTimer) clearInterval(breathTimer);
+
+      const phases = [
+        { name: "Breathe In", seconds: 4, scale: 1.15 },
+        { name: "Hold Gently", seconds: 4, scale: 1.15 },
+        { name: "Breathe Out", seconds: 6, scale: 0.92 }
+      ];
+
+      let phaseIndex = 0;
+      let remaining = phases[0].seconds;
+
+      const phaseEl = document.getElementById("breathPhase");
+      const countEl = document.getElementById("breathCount");
+      const circleEl = document.getElementById("breathCircle");
+
+      function updateUI() {
+        const p = phases[phaseIndex];
+        phaseEl.innerText = p.name;
+        countEl.innerText = `${remaining}s`;
+        circleEl.style.transform = `scale(${p.scale})`;
+      }
+
+      updateUI();
+
+      breathTimer = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+          phaseIndex = (phaseIndex + 1) % phases.length;
+          remaining = phases[phaseIndex].seconds;
+        }
+        updateUI();
+      }, 1000);
+    }
+
+    function playModalRecitation() {
+      const qari = document.getElementById("qariSelectGuidance")?.value || "Alafasy_128kbps";
+      const audioEl = document.getElementById("modalAudio");
+      audioEl.src = buildEveryAyahUrl(qari, "094006");
+      audioEl.play().catch(() => {});
     }
 
     function showStep(stepId) {
