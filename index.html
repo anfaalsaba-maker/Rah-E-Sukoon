@@ -35,7 +35,7 @@
 
     .app {
       width: 100%;
-      max-width: 880px;
+      max-width: 900px;
       background: var(--card);
       border-radius: 18px;
       border: 1px solid var(--border);
@@ -76,10 +76,6 @@
       font-size: 13px;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
-    }
-
-    .btn-calm-top:hover {
-      filter: brightness(0.97);
     }
 
     .nav-tabs {
@@ -147,7 +143,7 @@
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 105px;
       resize: vertical;
     }
 
@@ -156,6 +152,28 @@
       color: var(--muted);
       margin-top: 5px;
       line-height: 1.5;
+    }
+
+    .mood-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .chip {
+      background: #eef6f2;
+      color: var(--primary);
+      border: 1px solid #c6ddd3;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .chip:hover {
+      background: var(--primary-soft);
     }
 
     .btn {
@@ -249,12 +267,31 @@
       font-family: "Traditional Arabic", "Geeza Pro", "Segoe UI", Tahoma, sans-serif;
     }
 
-    .checkin-box {
-      margin-top: 16px;
+    .extra-box {
+      margin-top: 18px;
       padding: 16px;
       border-radius: 12px;
       background: #f8faf9;
       border: 1px solid var(--border);
+    }
+
+    .saved-list {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .saved-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
     }
 
     .checkin-actions {
@@ -306,7 +343,6 @@
       margin-top: 8px;
     }
 
-    /* Instant Calm Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -324,688 +360,4 @@
 
     .modal-card {
       width: 100%;
-      max-width: 480px;
-      background: #fff;
-      border-radius: 18px;
-      padding: 22px;
-      border: 1px solid var(--border);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
-      text-align: center;
-    }
-
-    .breath-circle {
-      width: 120px;
-      height: 120px;
-      margin: 16px auto;
-      border-radius: 50%;
-      background: var(--primary-soft);
-      border: 3px solid var(--primary);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-weight: 700;
-      color: var(--primary);
-      transition: transform 1s ease;
-    }
-  </style>
-</head>
-<body>
-  <div class="app">
-    <header>
-      <div>
-        <h1>Path of Peace</h1>
-        <p>A welcoming space for every age, background, and belief — guidance, recitation &amp; calm</p>
-      </div>
-      <button type="button" class="btn-calm-top" onclick="openInstantCalm()">
-        Instant 60s Calm
-      </button>
-    </header>
-
-    <div class="nav-tabs">
-      <button class="nav-tab active" onclick="switchTab('guidanceTab', this)">Guidance &amp; Concerns</button>
-      <button class="nav-tab" onclick="switchTab('tilawatTab', this)">Quran Recitation</button>
-      <button class="nav-tab" onclick="switchTab('kalmaTab', this)">Six Kalmas</button>
-    </div>
-
-    <div class="content">
-      <!-- TAB 1: GUIDANCE FLOW -->
-      <div id="guidanceTab" class="panel active">
-
-        <!-- Step 1: Inclusive Onboarding -->
-        <div id="step1" class="step active">
-          <h2>Step 1: Tell Us About Yourself</h2>
-          <p class="hint">
-            Open to everyone regardless of faith or background. Education is completely optional — if you have no formal education or prefer not to share, you can continue right away.
-          </p>
-
-          <div class="grid-2">
-            <div class="form-group">
-              <label for="age">Age *</label>
-              <input type="number" id="age" min="1" max="120" placeholder="e.g., 9, 25, 64" />
-            </div>
-
-            <div class="form-group">
-              <label for="gender">Gender</label>
-              <select id="gender">
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-                <option value="prefer_not">Prefer not to say</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="maritalStatus">Marital Status</label>
-              <select id="maritalStatus">
-                <option value="single">Single / Young</option>
-                <option value="married">Married</option>
-                <option value="other">Other / Prefer not to say</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="education">Education (Optional)</label>
-              <select id="education">
-                <option value="not_specified">Prefer not to say / No formal education</option>
-                <option value="primary_below">Primary or below</option>
-                <option value="secondary_inter">High school / Intermediate</option>
-                <option value="graduate_above">Graduate or above</option>
-              </select>
-            </div>
-          </div>
-
-          <button type="button" class="btn" onclick="goToStep2()">Continue</button>
-        </div>
-
-        <!-- Step 2: Share Concern -->
-        <div id="step2" class="step">
-          <div id="groupBadge" class="badge"></div>
-          <div id="toneBanner" class="tone-banner"></div>
-
-          <h2>Share What Is Weighing on Your Mind</h2>
-
-          <div class="form-group">
-            <label for="qariSelectGuidance">Preferred Reciter (Qari)</label>
-            <select id="qariSelectGuidance">
-              <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
-              <option value="Abdul_Basit_Mujawwad_128kbps">Abdul Basit Abdus Samad</option>
-              <option value="Maher_AlMuaiqly_128kbps">Maher Al Muaiqly</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="problemInput">Type or Speak Your Concern</label>
-            <textarea id="problemInput" placeholder="For example: I feel anxious or afraid, I get angry easily, I cannot make a decision, I am unwell, or I have family stress..."></textarea>
-            <div style="margin-top: 8px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-              <button type="button" class="btn btn-secondary btn-sm" onclick="startVoiceInput()">
-                Speak Your Concern
-              </button>
-              <span id="voiceStatus" class="hint"></span>
-            </div>
-          </div>
-
-          <button type="button" class="btn btn-secondary" onclick="goToStep1()">Back</button>
-          <button type="button" class="btn" onclick="analyzeProblem()">See Reason, Solution &amp; Verse</button>
-        </div>
-
-        <!-- Step 3: Guidance + Recitation + Check-In -->
-        <div id="step3" class="step">
-          <div id="profileSummaryBadge" class="badge"></div>
-          <h2 id="matchedTopicTitle"></h2>
-
-          <div class="card">
-            <h3>1. Why This Can Happen (Islamic Perspective)</h3>
-            <p id="outReason"></p>
-
-            <h3>2. Practical &amp; Spiritual Way Forward</h3>
-            <p id="outSolution"></p>
-          </div>
-
-          <div class="tilawat-box">
-            <h3>3. Related Quranic Verse &amp; Recitation</h3>
-            <div id="outArabic" class="arabic"></div>
-            <p><strong id="outRef"></strong></p>
-            <p id="outTranslation"></p>
-
-            <audio id="guidanceAudio" controls style="width: 100%; margin-top: 8px;"></audio>
-            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-              <button type="button" class="btn btn-gold btn-sm" onclick="playGuidanceTilawat()">Play Recitation</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="speakGuidanceSummary()">Listen to Explanation</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="stopAllAudio()">Stop</button>
-            </div>
-            <div id="audioStatus" class="status-note"></div>
-          </div>
-
-          <!-- Signature Feature: After-Guidance Check-In -->
-          <div class="checkin-box">
-            <strong>How do you feel right now?</strong>
-            <div class="checkin-actions">
-              <button type="button" class="btn btn-secondary btn-sm" onclick="handleCheckin('calmer')">A bit calmer</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="handleCheckin('heavy')">Still feeling heavy</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="goToStep2()">Share another concern</button>
-            </div>
-
-            <div id="followupSupport" class="followup-support">
-              <p id="followupMessage" style="margin: 0 0 8px;"></p>
-              <div class="arabic" style="font-size: 20px;">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</div>
-              <p class="hint" style="margin: 0 0 10px;">
-                <em>SubhanAllahi wa bihamdihi</em> — Glory and praise be to Allah. Take one slow breath and give yourself patience.
-              </p>
-              <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('سُبْحَانَ اللَّهِ وَبِحَمْدِهِ')">
-                Listen to Dhikr
-              </button>
-            </div>
-          </div>
-
-          <div style="margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
-            <button type="button" class="btn btn-secondary" onclick="goToStep2()">New Concern</button>
-            <button type="button" class="btn" onclick="goToStep1()">Change Profile</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 2: QURAN RECITATION -->
-      <div id="tilawatTab" class="panel">
-        <h2>Listen to Quran Recitation</h2>
-        <p class="hint">Select a verse and reciter for calm and reflection.</p>
-
-        <div class="grid-2">
-          <div class="form-group">
-            <label for="qariSelectTab">Reciter</label>
-            <select id="qariSelectTab">
-              <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
-              <option value="Abdul_Basit_Mujawwad_128kbps">Abdul Basit Abdus Samad</option>
-              <option value="Maher_AlMuaiqly_128kbps">Maher Al Muaiqly</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="ayahSelectTab">Verse</label>
-            <select id="ayahSelectTab">
-              <option value="013028">Surah Ar-Ra'd (13:28) — Peace in remembrance</option>
-              <option value="094006">Surah Ash-Sharh (94:6) — Ease with hardship</option>
-              <option value="002286">Surah Al-Baqarah (2:286) — Burden within capacity</option>
-              <option value="026080">Surah Ash-Shu'ara (26:80) — Healing &amp; recovery</option>
-            </select>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <button type="button" class="btn btn-gold" onclick="playSelectedTabTilawat()">Play Recitation</button>
-          <button type="button" class="btn btn-secondary" onclick="stopAllAudio()">Stop</button>
-        </div>
-
-        <audio id="tabAudio" controls style="width: 100%; margin-top: 14px;"></audio>
-        <div id="tabAudioStatus" class="status-note"></div>
-      </div>
-
-      <!-- TAB 3: ALL SIX KALMAS WITH ORIGINAL ARABIC -->
-      <div id="kalmaTab" class="panel">
-        <h2>The Six Kalmas</h2>
-        <p class="hint">Original Arabic text, English meaning, and audio playback for each Kalma.</p>
-
-        <div class="kalma-grid">
-          <div class="kalma-card">
-            <div>
-              <div class="kalma-title">First Kalma (Tayyab)</div>
-              <div class="arabic">لَا إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَّسُولُ اللَّهِ</div>
-              <p class="hint">There is no deity worthy of worship except Allah, and Muhammad (peace be upon him) is the Messenger of Allah.</p>
-            </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَّسُولُ اللَّهِ')">
-              Listen
-            </button>
-          </div>
-
-          <div class="kalma-card">
-            <div>
-              <div class="kalma-title">Second Kalma (Shahadah)</div>
-              <div class="arabic">أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
-              <p class="hint">I bear witness that there is no deity except Allah, alone without partner, and I bear witness that Muhammad is His servant and Messenger.</p>
-            </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ')">
-              Listen
-            </button>
-          </div>
-
-          <div class="kalma-card">
-            <div>
-              <div class="kalma-title">Third Kalma (Tamjeed)</div>
-              <div class="arabic">سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ</div>
-              <p class="hint">Glory be to Allah, all praise is for Allah, there is no deity except Allah, and Allah is the Greatest.</p>
-            </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ')">
-              Listen
-            </button>
-          </div>
-
-          <div class="kalma-card">
-            <div>
-              <div class="kalma-title">Fourth Kalma (Tawheed)</div>
-              <div class="arabic">لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ حَيٌّ لَا يَمُوتُ أَبَدًا أَبَدًا</div>
-              <p class="hint">There is no deity except Allah alone; to Him belongs all dominion and praise, He gives life and causes death, and He is Ever-Living and never dies.</p>
-            </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ')">
-              Listen
-            </button>
-          </div>
-
-          <div class="kalma-card">
-            <div>
-              <div class="kalma-title">Fifth Kalma (Astaghfar)</div>
-              <div class="arabic">أَسْتَغْفِرُ اللَّهَ رَبِّي مِنْ كُلِّ ذَنْبٍ أَذْنَبْتُهُ عَمْدًا أَوْ خَطَأً سِرًّا أَوْ عَلَانِيَةً</div>
-              <p class="hint">I seek forgiveness from Allah, my Lord, for every sin I committed intentionally or by mistake, in secret or in open.</p>
-            </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('أَسْتَغْفِرُ اللَّهَ رَبِّي مِنْ كُلِّ ذَنْبٍ أَذْنَبْتُهُ عَمْدًا أَوْ خَطَأً سِرًّا أَوْ عَلَانِيَةً')">
-              Listen
-            </button>
-          </div>
-
-          <div class="kalma-card">
-            <div>
-              <div class="kalma-title">Sixth Kalma (Radd-e-Kufr)</div>
-              <div class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ أَنْ أُشْرِكَ بِكَ شَيْئًا وَأَنَا أَعْلَمُ وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ</div>
-              <p class="hint">O Allah, I seek refuge in You from knowingly associating anything with You, and I seek Your forgiveness for what I do not know.</p>
-            </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ أَنْ أُشْرِكَ بِكَ شَيْئًا وَأَنَا أَعْلَمُ وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ')">
-              Listen
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Instant 60-Second Calm Modal -->
-  <div id="calmModal" class="modal-backdrop">
-    <div class="modal-card">
-      <h2 style="margin: 0 0 6px;">Instant 60-Second Calm</h2>
-      <p class="hint" style="margin: 0;">No forms needed — follow the breath and listen to Surah Ash-Sharh (94:6).</p>
-
-      <div id="breathCircle" class="breath-circle">
-        <span id="breathPhase">Breathe In</span>
-        <small id="breathCount" style="font-weight: 500; margin-top: 4px;">4s</small>
-      </div>
-
-      <p id="calmMessage" style="font-size: 14px; line-height: 1.55;">
-        With every hardship comes ease. Relax your shoulders and jaw.
-      </p>
-
-      <audio id="modalAudio" controls style="width: 100%; margin-top: 8px;"></audio>
-
-      <div style="margin-top: 14px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-        <button type="button" class="btn btn-gold btn-sm" onclick="playModalRecitation()">Play Verse Audio</button>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="closeInstantCalm()">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    let profile = {
-      age: 24,
-      gender: "prefer_not",
-      maritalStatus: "single",
-      education: "not_specified"
-    };
-
-    let currentAyahCode = "013028";
-    let breathTimer = null;
-
-    const topics = [
-      {
-        key: "anger",
-        keywords: ["angry", "anger", "mad", "temper", "rage", "frustrated", "fight"],
-        title: "Guidance on Anger & Emotional Heat",
-        reason: "Anger often rises when we feel hurt, unheard, or overwhelmed. In Islamic teachings, controlling anger and choosing forgiveness brings real inner strength.",
-        solution: "Pause before replying, change your posture or step away for a moment, do wudu (ablution) or wash your face with cool water, and speak softly.",
-        arabic: "وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ",
-        ref: "Reference: Surah Ali 'Imran (3:134)",
-        translation: "Meaning: '...and those who restrain anger and pardon people...'",
-        ayahCode: "003134"
-      },
-      {
-        key: "indecision",
-        keywords: ["decide", "decision", "confused", "stuck", "choice", "unsure", "what should i do"],
-        title: "Guidance on Difficult Decisions & Confusion",
-        reason: "Uncertainty happens when outcomes feel unclear or multiple options pull us in different directions. Islam encourages thoughtful consultation (shura) and trust after making a sincere choice.",
-        solution: "Break the decision into small pros and cons, ask someone wise and trustworthy for advice, pray for guidance (Istikharah / sincere dua), and move forward steadily.",
-        arabic: "فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ",
-        ref: "Reference: Surah Ali 'Imran (3:159)",
-        translation: "Meaning: 'Then when you have decided, put your trust in Allah.'",
-        ayahCode: "003159"
-      },
-      {
-        key: "illness",
-        keywords: ["sick", "ill", "illness", "pain", "health", "doctor", "fever", "unwell", "disease"],
-        title: "Guidance on Illness, Pain & Health Worries",
-        reason: "Physical or mental illness can feel exhausting and lonely. In faith, seeking proper treatment goes hand in hand with patience and hope in healing from Allah.",
-        solution: "Consult a qualified doctor or healthcare professional, rest without guilt, stay patient, and make sincere supplication for healing.",
-        arabic: "وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ",
-        ref: "Reference: Surah Ash-Shu'ara (26:80)",
-        translation: "Meaning: 'And when I am ill, it is He who heals me.'",
-        ayahCode: "026080"
-      },
-      {
-        key: "hardship",
-        keywords: ["hardship", "struggle", "money", "job", "broke", "difficult", "sad", "hopeless", "loss"],
-        title: "Guidance on Hardship & Difficult Times",
-        reason: "Difficult seasons test our endurance, yet Quranic guidance reminds us that hardship is never permanent and relief arrives alongside struggle.",
-        solution: "Focus on one small step today rather than the whole mountain, keep honest effort going, reach out for support, and hold onto hope.",
-        arabic: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
-        ref: "Reference: Surah Ash-Sharh (94:6)",
-        translation: "Meaning: 'For indeed, with hardship [will be] ease.'",
-        ayahCode: "094006"
-      },
-      {
-        key: "relationships",
-        keywords: ["family", "parents", "marriage", "spouse", "lonely", "alone", "friend", "relationship", "home"],
-        title: "Guidance on Relationships, Home & Loneliness",
-        reason: "Misunderstandings, pride, or silence often create distance in relationships, while feeling alone can weigh heavily on the heart.",
-        solution: "Choose gentle words, listen to understand rather than win, forgive small faults, and stay connected with kind people and uplifting remembrance.",
-        arabic: "وَقُولُوا لِلنَّاسِ حُسْنًا",
-        ref: "Reference: Surah Al-Baqarah (2:83)",
-        translation: "Meaning: 'And speak good [and gentle] words to people.'",
-        ayahCode: "002083"
-      },
-      {
-        key: "anxiety",
-        keywords: ["anxious", "anxiety", "scared", "afraid", "fear", "panic", "stress", "worried", "worry"],
-        title: "Guidance on Anxiety, Fear & Restlessness",
-        reason: "When the mind races into 'what-if' scenarios, restlessness grows. From an Islamic perspective, true heart stillness is rooted in remembering Allah and trusting Him.",
-        solution: "Take slow deep breaths, ground yourself in this exact room and moment, talk to someone you trust, and keep calm remembrance part of your day.",
-        arabic: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
-        ref: "Reference: Surah Ar-Ra'd (13:28)",
-        translation: "Meaning: 'Unquestionably, by the remembrance of Allah hearts are assured.'",
-        ayahCode: "013028"
-      }
-    ];
-
-    function switchTab(tabId, btnEl) {
-      stopAllAudio();
-      document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
-      document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
-      document.getElementById(tabId).classList.add("active");
-      if (btnEl) btnEl.classList.add("active");
-    }
-
-    function formatGender(gender) {
-      if (gender === "female") return "Females";
-      if (gender === "male") return "Males";
-      return "All Genders";
-    }
-
-    function getGroupDetails(age, gender) {
-      let stage = "Youth & Adults";
-      let toneNote = "A respectful, calm space to share what is on your mind and explore clear, practical guidance.";
-
-      if (age < 13) {
-        stage = "Kids Space";
-        toneNote = "Welcome! You don't have to use big words here. Tell us what feels scary, upsetting, or confusing, and we'll keep things simple and kind.";
-      } else if (age >= 60) {
-        stage = "Elders Space";
-        toneNote = "Welcome with deep respect. This space is designed for comfort, dignity, peaceful recitation, and thoughtful reflection.";
-      }
-
-      return {
-        label: `${stage} • ${formatGender(gender)}`,
-        note: toneNote
-      };
-    }
-
-    function goToStep1() {
-      stopAllAudio();
-      showStep("step1");
-    }
-
-    function goToStep2() {
-      const ageVal = parseInt(document.getElementById("age").value, 10);
-      if (!ageVal || ageVal < 1 || ageVal > 120) {
-        alert("Please enter a valid age between 1 and 120.");
-        return;
-      }
-
-      profile = {
-        age: ageVal,
-        gender: document.getElementById("gender").value,
-        maritalStatus: document.getElementById("maritalStatus").value,
-        education: document.getElementById("education").value
-      };
-
-      const details = getGroupDetails(profile.age, profile.gender);
-      document.getElementById("groupBadge").innerText = details.label;
-      document.getElementById("toneBanner").innerText = details.note;
-      showStep("step2");
-    }
-
-    function findMatchingTopic(text) {
-      const lower = (text || "").toLowerCase();
-      let best = topics[5]; // default to anxiety/restlessness
-      let bestScore = 0;
-
-      for (const t of topics) {
-        let score = 0;
-        for (const kw of t.keywords) {
-          if (lower.includes(kw)) score++;
-        }
-        if (score > bestScore) {
-          bestScore = score;
-          best = t;
-        }
-      }
-      return best;
-    }
-
-    function adaptTextForAge(text, age, kind) {
-      if (age < 13) {
-        return kind === "reason"
-          ? `${text} Even kids feel big emotions sometimes, and asking for help is a smart step.`
-          : `${text} Talk to a trusted parent, teacher, or caring adult near you too.`;
-      }
-      if (age >= 60) {
-        return kind === "reason"
-          ? `${text} Carrying years of responsibility can make even small worries feel heavier.`
-          : `${text} Take things at a gentle pace and lean on steady prayer and peace of mind.`;
-      }
-      return text;
-    }
-
-    function analyzeProblem() {
-      stopAllAudio();
-      document.getElementById("followupSupport").classList.remove("active");
-
-      const rawInput = document.getElementById("problemInput").value.trim();
-      const matched = findMatchingTopic(rawInput);
-      currentAyahCode = matched.ayahCode;
-
-      const details = getGroupDetails(profile.age, profile.gender);
-      document.getElementById("profileSummaryBadge").innerText =
-        `${details.label} • Age ${profile.age}`;
-
-      document.getElementById("matchedTopicTitle").innerText = matched.title;
-      document.getElementById("outReason").innerText = adaptTextForAge(matched.reason, profile.age, "reason");
-      document.getElementById("outSolution").innerText = adaptTextForAge(matched.solution, profile.age, "solution");
-      document.getElementById("outArabic").innerText = matched.arabic;
-      document.getElementById("outRef").innerText = matched.ref;
-      document.getElementById("outTranslation").innerText = matched.translation;
-      document.getElementById("audioStatus").innerText = "";
-
-      showStep("step3");
-    }
-
-    function handleCheckin(state) {
-      const box = document.getElementById("followupSupport");
-      const msg = document.getElementById("followupMessage");
-      box.classList.add("active");
-
-      if (state === "calmer") {
-        msg.innerText = "Alhamdulillah — even a small moment of calm matters. Keep that gentle pace going.";
-      } else {
-        msg.innerText = "It is okay if the weight hasn't lifted yet. You don't have to rush healing — try this short remembrance and let your shoulders drop:";
-      }
-    }
-
-    function buildEveryAyahUrl(qari, ayahCode) {
-      return `https://everyayah.com/data/${qari}/${ayahCode}.mp3`;
-    }
-
-    function playGuidanceTilawat() {
-      stopSpeech();
-      const qari = document.getElementById("qariSelectGuidance").value;
-      const audioEl = document.getElementById("guidanceAudio");
-      const statusEl = document.getElementById("audioStatus");
-
-      audioEl.src = buildEveryAyahUrl(qari, currentAyahCode);
-      statusEl.innerText = "Loading recitation...";
-      audioEl.play().then(() => {
-        statusEl.innerText = "Playing recitation.";
-      }).catch(() => {
-        statusEl.innerText = "Could not stream audio; playing fallback voice.";
-        speakArabic(document.getElementById("outArabic").innerText);
-      });
-    }
-
-    function playSelectedTabTilawat() {
-      stopSpeech();
-      const qari = document.getElementById("qariSelectTab").value;
-      const ayahCode = document.getElementById("ayahSelectTab").value;
-      const audioEl = document.getElementById("tabAudio");
-      const statusEl = document.getElementById("tabAudioStatus");
-
-      audioEl.src = buildEveryAyahUrl(qari, ayahCode);
-      statusEl.innerText = "Loading recitation...";
-      audioEl.play().then(() => {
-        statusEl.innerText = "Playing recitation.";
-      }).catch(() => {
-        statusEl.innerText = "Unable to play audio right now. Please check your internet connection.";
-      });
-    }
-
-    function speakArabic(text) {
-      if (!("speechSynthesis" in window)) return;
-      window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = "ar-SA";
-      u.rate = 0.88;
-      window.speechSynthesis.speak(u);
-    }
-
-    function speakGuidanceSummary() {
-      if (!("speechSynthesis" in window)) return;
-      window.speechSynthesis.cancel();
-      const translation = document.getElementById("outTranslation").innerText;
-      const reason = document.getElementById("outReason").innerText;
-      const solution = document.getElementById("outSolution").innerText;
-
-      const u = new SpeechSynthesisUtterance(`${translation}. Why this happens: ${reason}. Way forward: ${solution}`);
-      u.lang = "en-US";
-      u.rate = 0.96;
-      window.speechSynthesis.speak(u);
-    }
-
-    function stopSpeech() {
-      if ("speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-      }
-    }
-
-    function stopAllAudio() {
-      stopSpeech();
-      ["guidanceAudio", "tabAudio", "modalAudio"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.pause();
-          el.currentTime = 0;
-        }
-      });
-    }
-
-    function startVoiceInput() {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const statusEl = document.getElementById("voiceStatus");
-
-      if (!SpeechRecognition) {
-        statusEl.innerText = "Voice input is not supported in this browser.";
-        return;
-      }
-
-      const recognition = new SpeechRecognition();
-      recognition.lang = "en-US";
-      recognition.interimResults = false;
-      statusEl.innerText = "Listening... please speak.";
-
-      recognition.onresult = function (event) {
-        const transcript = event.results[0][0].transcript;
-        document.getElementById("problemInput").value = transcript;
-        statusEl.innerText = "Captured your message.";
-      };
-
-      recognition.onerror = function () {
-        statusEl.innerText = "Couldn't hear clearly. Please try again.";
-      };
-
-      recognition.start();
-    }
-
-    function openInstantCalm() {
-      stopAllAudio();
-      document.getElementById("calmModal").classList.add("open");
-      startBreathingCycle();
-    }
-
-    function closeInstantCalm() {
-      document.getElementById("calmModal").classList.remove("open");
-      if (breathTimer) {
-        clearInterval(breathTimer);
-        breathTimer = null;
-      }
-      stopAllAudio();
-    }
-
-    function startBreathingCycle() {
-      if (breathTimer) clearInterval(breathTimer);
-
-      const phases = [
-        { name: "Breathe In", seconds: 4, scale: 1.15 },
-        { name: "Hold Gently", seconds: 4, scale: 1.15 },
-        { name: "Breathe Out", seconds: 6, scale: 0.92 }
-      ];
-
-      let phaseIndex = 0;
-      let remaining = phases[0].seconds;
-
-      const phaseEl = document.getElementById("breathPhase");
-      const countEl = document.getElementById("breathCount");
-      const circleEl = document.getElementById("breathCircle");
-
-      function updateUI() {
-        const p = phases[phaseIndex];
-        phaseEl.innerText = p.name;
-        countEl.innerText = `${remaining}s`;
-        circleEl.style.transform = `scale(${p.scale})`;
-      }
-
-      updateUI();
-
-      breathTimer = setInterval(() => {
-        remaining--;
-        if (remaining <= 0) {
-          phaseIndex = (phaseIndex + 1) % phases.length;
-          remaining = phases[phaseIndex].seconds;
-        }
-        updateUI();
-      }, 1000);
-    }
-
-    function playModalRecitation() {
-      const qari = document.getElementById("qariSelectGuidance")?.value || "Alafasy_128kbps";
-      const audioEl = document.getElementById("modalAudio");
-      audioEl.src = buildEveryAyahUrl(qari, "094006");
-      audioEl.play().catch(() => {});
-    }
-
-    function showStep(stepId) {
-      document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
-      document.getElementById(stepId).classList.add("active");
-    }
-  </script>
-</body>
-</html>
+      max-width: 480px
