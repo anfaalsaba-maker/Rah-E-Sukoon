@@ -292,6 +292,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .checkin-actions {
@@ -399,9 +400,9 @@
     </header>
 
     <div class="nav-tabs">
-      <button class="nav-tab active" onclick="switchTab('guidanceTab', this)">Guidance &amp; Concerns</button>
-      <button class="nav-tab" onclick="switchTab('tilawatTab', this)">Quran Recitation</button>
-      <button class="nav-tab" onclick="switchTab('kalmaTab', this)">Six Kalmas</button>
+      <button type="button" class="nav-tab active" onclick="switchTab('guidanceTab', this)">Guidance &amp; Concerns</button>
+      <button type="button" class="nav-tab" onclick="switchTab('tilawatTab', this)">Quran Recitation</button>
+      <button type="button" class="nav-tab" onclick="switchTab('kalmaTab', this)">Six Kalmas</button>
     </div>
 
     <div class="content">
@@ -918,7 +919,7 @@
     function getFavorites() {
       try {
         return JSON.parse(localStorage.getItem("pop_favorites") || "[]");
-      } catch {
+      } catch (e) {
         return [];
       }
     }
@@ -980,7 +981,7 @@
     function getCalmNotes() {
       try {
         return JSON.parse(localStorage.getItem("pop_notes") || "[]");
-      } catch {
+      } catch (e) {
         return [];
       }
     }
