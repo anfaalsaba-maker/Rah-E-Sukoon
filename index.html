@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Path of Peace | Guidance, Recitation, Kalmas & Tasbih</title>
+  <title>Path of Peace | All 114 Surahs, Guidance, Kalmas & Custom Tasbih</title>
   <style>
     :root {
       --bg: #f2f7f4;
@@ -63,7 +63,7 @@
 
     .app {
       width: 100%;
-      max-width: 920px;
+      max-width: 960px;
       background: var(--card);
       border-radius: 18px;
       border: 1px solid var(--border);
@@ -133,7 +133,7 @@
 
     .nav-tab {
       flex: 1;
-      min-width: 130px;
+      min-width: 145px;
       padding: 12px 12px;
       border: none;
       background: transparent;
@@ -167,6 +167,12 @@
       gap: 14px;
     }
 
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
     .form-group {
       margin-bottom: 15px;
     }
@@ -189,7 +195,7 @@
     }
 
     textarea {
-      min-height: 105px;
+      min-height: 100px;
       resize: vertical;
     }
 
@@ -203,8 +209,8 @@
     .mood-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 7px;
+      margin-bottom: 14px;
     }
 
     .chip {
@@ -216,6 +222,10 @@
       font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
+    }
+
+    .chip:hover {
+      filter: brightness(0.96);
     }
 
     .btn {
@@ -282,12 +292,18 @@
     }
 
     .card h3 {
-      margin: 12px 0 6px;
+      margin: 14px 0 6px;
       font-size: 16px;
     }
 
     .card h3:first-child {
       margin-top: 0;
+    }
+
+    .action-steps {
+      margin: 6px 0 0;
+      padding-left: 20px;
+      line-height: 1.65;
     }
 
     .tilawat-box {
@@ -337,30 +353,9 @@
       gap: 10px;
       flex-wrap: wrap;
     }
-
-    .checkin-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .followup-support {
-      margin-top: 12px;
-      padding: 14px;
-      border-radius: 10px;
-      background: var(--primary-soft);
-      border-left: 4px solid var(--primary);
-      display: none;
-    }
-
-    .followup-support.active {
-      display: block;
-    }
-
     .kalma-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
       gap: 14px;
       margin-top: 12px;
     }
@@ -391,8 +386,8 @@
     }
 
     .tasbih-circle {
-      width: 150px;
-      height: 150px;
+      width: 155px;
+      height: 155px;
       margin: 14px auto;
       border-radius: 50%;
       background: var(--primary);
@@ -468,7 +463,7 @@
     <header>
       <div>
         <h1>Path of Peace</h1>
-        <p>A welcoming space for every age, background, and belief — guidance, recitation &amp; calm</p>
+        <p>Guidance for every life moment, all 114 Surahs, Kalmas, Duas &amp; Custom Tasbih</p>
       </div>
       <div class="header-actions">
         <button type="button" class="theme-btn" onclick="cycleTheme()">Switch Theme</button>
@@ -477,10 +472,10 @@
     </header>
 
     <div class="nav-tabs">
-      <button type="button" class="nav-tab active" onclick="switchTab('guidanceTab', this)">Guidance &amp; Concerns</button>
-      <button type="button" class="nav-tab" onclick="switchTab('tilawatTab', this)">Quran Recitation</button>
-      <button type="button" class="nav-tab" onclick="switchTab('kalmaTab', this)">Six Kalmas</button>
-      <button type="button" class="nav-tab" onclick="switchTab('tasbihTab', this)">Tasbih &amp; Duas</button>
+      <button type="button" class="nav-tab active" onclick="switchTab('guidanceTab', this)">Guidance &amp; Life Topics</button>
+      <button type="button" class="nav-tab" onclick="switchTab('tilawatTab', this)">All 114 Surahs</button>
+      <button type="button" class="nav-tab" onclick="switchTab('kalmaTab', this)">Kalmas &amp; Short Surahs</button>
+      <button type="button" class="nav-tab" onclick="switchTab('tasbihTab', this)">Custom Tasbih &amp; Duas</button>
     </div>
 
     <div class="content">
@@ -491,13 +486,13 @@
         <div id="step1" class="step active">
           <h2>Step 1: Tell Us About Yourself</h2>
           <p class="hint">
-            Open to everyone regardless of faith or background. Education is completely optional — if you have no formal education or prefer not to share, you can continue right away.
+            Open to everyone regardless of faith or background. Education is completely optional — you can continue right away even without sharing it.
           </p>
 
           <div class="grid-2">
             <div class="form-group">
               <label for="age">Age *</label>
-              <input type="number" id="age" min="1" max="120" placeholder="e.g., 9, 25, 64" />
+              <input type="number" id="age" min="1" max="120" placeholder="e.g., 9, 20, 64" />
             </div>
 
             <div class="form-group">
@@ -532,22 +527,27 @@
           <button type="button" class="btn" onclick="goToStep2()">Continue</button>
         </div>
 
-        <!-- Step 2: Share Concern -->
+        <!-- Step 2: Share Concern or Life Topic -->
         <div id="step2" class="step">
           <div id="groupBadge" class="badge"></div>
           <div id="toneBanner" class="tone-banner"></div>
 
-          <h2>Share What Is Weighing on Your Mind</h2>
+          <h2>What Would You Like Guidance On Today?</h2>
+          <p class="hint">Pick any topic below or write/speak whatever is on your heart — whether it is pain, a struggle, a big life choice, gratitude, or seeking spiritual closeness.</p>
 
           <div class="mood-chips">
-            <button type="button" class="chip" onclick="quickFillMood('I feel anxious and worried')">Anxious / Worried</button>
-            <button type="button" class="chip" onclick="quickFillMood('I feel angry and overwhelmed')">Angry / Overwhelmed</button>
-            <button type="button" class="chip" onclick="quickFillMood('I cannot make a decision and feel confused')">Confused / Decision</button>
-            <button type="button" class="chip" onclick="quickFillMood('I am feeling unwell and tired')">Unwell / Health</button>
-            <button type="button" class="chip" onclick="quickFillMood('I am going through a difficult time')">Hardship / Sad</button>
-            <button type="button" class="chip" onclick="quickFillMood('I feel lonely and having family tension')">Relationships / Lonely</button>
+            <button type="button" class="chip" onclick="quickFillMood('I have a headache and body pain')">Headache / Body Pain</button>
+            <button type="button" class="chip" onclick="quickFillMood('I feel anxious, scared, and restless')">Anxiety &amp; Fear</button>
+            <button type="button" class="chip" onclick="quickFillMood('I feel angry and overwhelmed')">Anger &amp; Patience</button>
+            <button type="button" class="chip" onclick="quickFillMood('I cannot make a decision and feel confused')">Decisions &amp; Clarity</button>
+            <button type="button" class="chip" onclick="quickFillMood('I am feeling unwell and need strength')">Illness &amp; Healing</button>
+            <button type="button" class="chip" onclick="quickFillMood('I am facing financial hardship and stress')">Provision &amp; Hardship</button>
+            <button type="button" class="chip" onclick="quickFillMood('I have family or relationship tension')">Family &amp; Relationships</button>
+            <button type="button" class="chip" onclick="quickFillMood('I feel lonely and disconnected')">Loneliness &amp; Comfort</button>
+            <button type="button" class="chip" onclick="quickFillMood('I regret my mistakes and want forgiveness')">Forgiveness &amp; Fresh Start</button>
+            <button type="button" class="chip" onclick="quickFillMood('I want to feel grateful and grow closer to Allah')">Gratitude &amp; Peace</button>
+            <button type="button" class="chip" onclick="quickFillMood('I am stressed about studies, exams, or career')">Studies &amp; Work Pressure</button>
           </div>
-
           <div class="form-group">
             <label for="qariSelectGuidance">Preferred Reciter (Qari)</label>
             <select id="qariSelectGuidance">
@@ -558,35 +558,38 @@
           </div>
 
           <div class="form-group">
-            <label for="problemInput">Type or Speak Your Concern</label>
-            <textarea id="problemInput" placeholder="Write in your own words or tap a quick mood chip above..."></textarea>
+            <label for="problemInput">Describe Your Situation, Pain, Question, or Reflection</label>
+            <textarea id="problemInput" placeholder="Write freely in your own words (e.g., headache, body pain, anxiety, anger...) or tap a topic chip above..."></textarea>
             <div style="margin-top: 8px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
               <button type="button" class="btn btn-secondary btn-sm" onclick="startVoiceInput()">
-                Speak Your Concern
+                Speak Instead of Typing
               </button>
               <span id="voiceStatus" class="hint"></span>
             </div>
           </div>
 
           <button type="button" class="btn btn-secondary" onclick="goToStep1()">Back</button>
-          <button type="button" class="btn" onclick="analyzeProblem()">See Reason, Solution &amp; Verse</button>
+          <button type="button" class="btn" onclick="analyzeProblem()">Get Complete Guidance</button>
         </div>
 
-        <!-- Step 3: Guidance + Recitation + Check-In -->
+        <!-- Step 3: Deep Guidance + Steps + Verse + Dua -->
         <div id="step3" class="step">
           <div id="profileSummaryBadge" class="badge"></div>
           <h2 id="matchedTopicTitle"></h2>
 
           <div class="card">
-            <h3>1. Why This Can Happen (Islamic Perspective)</h3>
+            <h3>1. Understanding This Moment (Islamic &amp; Human Perspective)</h3>
             <p id="outReason"></p>
 
             <h3>2. Practical &amp; Spiritual Way Forward</h3>
             <p id="outSolution"></p>
+
+            <h3>3. Three Small Steps You Can Take Right Now</h3>
+            <ol id="outSteps" class="action-steps"></ol>
           </div>
 
           <div class="tilawat-box">
-            <h3>3. Related Quranic Verse &amp; Recitation</h3>
+            <h3>4. Related Quranic Verse &amp; Recitation</h3>
             <div id="outArabic" class="arabic"></div>
             <p><strong id="outRef"></strong></p>
             <p id="outTranslation"></p>
@@ -594,8 +597,7 @@
             <audio id="guidanceAudio" controls style="width: 100%; margin-top: 8px;"></audio>
             <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
               <button type="button" class="btn btn-gold btn-sm" onclick="playGuidanceTilawat()">Play Recitation</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="speakGuidanceSummary()">Listen to Explanation</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="saveCurrentFavorite()">Save Favorite Verse</button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="speakGuidanceSummary()">Listen to Full Guidance</button>
               <button type="button" class="btn btn-secondary btn-sm" onclick="copyGuidanceText()">Copy Guidance</button>
               <button type="button" class="btn btn-secondary btn-sm" onclick="stopAllAudio()">Stop</button>
             </div>
@@ -603,50 +605,27 @@
           </div>
 
           <div class="extra-box">
-            <strong>How do you feel right now?</strong>
-            <div class="checkin-actions">
-              <button type="button" class="btn btn-secondary btn-sm" onclick="handleCheckin('calmer')">A bit calmer</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="handleCheckin('heavy')">Still feeling heavy</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="goToStep2()">Share another concern</button>
-            </div>
-
-            <div id="followupSupport" class="followup-support">
-              <p id="followupMessage" style="margin: 0 0 8px;"></p>
-              <div class="arabic" style="font-size: 20px;">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</div>
-              <p class="hint" style="margin: 0 0 10px;">
-                <em>SubhanAllahi wa bihamdihi</em> — Glory and praise be to Allah. Take one slow breath and give yourself patience.
-              </p>
-              <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('سُبْحَانَ اللَّهِ وَبِحَمْدِهِ')">
-                Listen to Dhikr
-              </button>
-            </div>
-          </div>
-
-          <div class="extra-box">
-            <strong>Personal Calm Note (Saved on This Device)</strong>
-            <p class="hint" style="margin-top: 2px;">Jot down a gentle reminder or one thing you are grateful for today.</p>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
-              <input type="text" id="calmNoteInput" placeholder="e.g., I took a deep breath and stayed patient today..." style="flex: 1; min-width: 220px;" />
-              <button type="button" class="btn btn-sm" onclick="saveCalmNote()">Save Note</button>
-            </div>
-            <div id="savedNotesList" class="saved-list"></div>
+            <strong>Recommended Short Dua for This Situation</strong>
+            <div id="outDuaArabic" class="arabic" style="font-size: 21px;"></div>
+            <p id="outDuaMeaning" class="hint" style="margin: 0 0 8px;"></p>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakCurrentGuidanceDua()">Listen to Dua</button>
           </div>
 
           <div style="margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
-            <button type="button" class="btn btn-secondary" onclick="goToStep2()">New Concern</button>
+            <button type="button" class="btn btn-secondary" onclick="goToStep2()">Explore Another Topic</button>
             <button type="button" class="btn" onclick="goToStep1()">Change Profile</button>
           </div>
         </div>
       </div>
 
-      <!-- TAB 2: QURAN RECITATION (7 VERSES + FAVORITES) -->
+      <!-- TAB 2: ALL 114 SURAHS PLAYER & READER -->
       <div id="tilawatTab" class="panel">
-        <h2>Listen to Quran Recitation</h2>
-        <p class="hint">Select a verse and reciter for calm and reflection.</p>
+        <h2>All 114 Surahs — Read &amp; Listen</h2>
+        <p class="hint">Select any Surah (1 to 114) and any Ayah number to read the Arabic text, English meaning, and listen to world-renowned reciters.</p>
 
-        <div class="grid-2">
+        <div class="grid-3">
           <div class="form-group">
-            <label for="qariSelectTab">Reciter</label>
+            <label for="qariSelectTab">Reciter (Qari)</label>
             <select id="qariSelectTab">
               <option value="Alafasy_128kbps">Mishary Rashid Alafasy</option>
               <option value="Abdul_Basit_Mujawwad_128kbps">Abdul Basit Abdus Samad</option>
@@ -655,39 +634,46 @@
           </div>
 
           <div class="form-group">
-            <label for="ayahSelectTab">Verse</label>
-            <select id="ayahSelectTab">
-              <option value="013028">Surah Ar-Ra'd (13:28) — Peace in remembrance</option>
-              <option value="094006">Surah Ash-Sharh (94:6) — Ease with hardship</option>
-              <option value="002286">Surah Al-Baqarah (2:286) — Burden within capacity</option>
-              <option value="026080">Surah Ash-Shu'ara (26:80) — Healing &amp; recovery</option>
-              <option value="003134">Surah Ali 'Imran (3:134) — Restraining anger &amp; pardoning</option>
-              <option value="003159">Surah Ali 'Imran (3:159) — Trusting Allah after deciding</option>
-              <option value="002083">Surah Al-Baqarah (2:83) — Kind &amp; gentle speech</option>
-            </select>
+            <label for="surahSelect">Surah (1 – 114)</label>
+            <select id="surahSelect" onchange="onSurahChange()"></select>
+          </div>
+
+          <div class="form-group">
+            <label for="ayahNumberSelect">Ayah (Verse Number)</label>
+            <select id="ayahNumberSelect" onchange="loadSelectedAyahText()"></select>
           </div>
         </div>
 
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <button type="button" class="btn btn-gold" onclick="playSelectedTabTilawat()">Play Recitation</button>
-          <button type="button" class="btn btn-secondary" onclick="saveSelectedTabFavorite()">Save to Favorites</button>
+          <button type="button" class="btn btn-gold" onclick="playSurahAyahAudio()">Play Selected Ayah</button>
+          <button type="button" class="btn btn-secondary" onclick="playNextAyah()">Next Ayah</button>
+          <button type="button" class="btn btn-secondary" onclick="saveSurahFavorite()">Save to Favorites</button>
           <button type="button" class="btn btn-secondary" onclick="stopAllAudio()">Stop</button>
         </div>
 
-        <audio id="tabAudio" controls style="width: 100%; margin-top: 14px;"></audio>
-        <div id="tabAudioStatus" class="status-note"></div>
+        <div class="tilawat-box" style="margin-top: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <strong id="readerSurahLabel">Surah Al-Fatihah (1:1)</strong>
+            <span id="readerMeta" class="hint" style="margin: 0;">7 Ayahs</span>
+          </div>
+          <div id="readerArabic" class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+          <p id="readerTranslation" style="margin: 6px 0 0;">In the name of Allah, the Entirely Merciful, the Especially Merciful.</p>
+          <audio id="tabAudio" controls style="width: 100%; margin-top: 12px;"></audio>
+          <div id="tabAudioStatus" class="status-note"></div>
+        </div>
 
         <div class="extra-box">
-          <strong>Saved Favorite Verses</strong>
+          <strong>Saved Favorite Ayahs</strong>
           <div id="favoriteVersesList" class="saved-list"></div>
         </div>
       </div>
 
-      <!-- TAB 3: ALL SIX KALMAS WITH ORIGINAL ARABIC -->
+      <!-- TAB 3: SIX KALMAS + SHORT SURAHS + DUROOD -->
       <div id="kalmaTab" class="panel">
-        <h2>The Six Kalmas</h2>
-        <p class="hint">Original Arabic text, English meaning, and audio playback for each Kalma.</p>
+        <h2>Six Kalmas, Short Surahs &amp; Essential Recitations</h2>
+        <p class="hint">Includes all Six Kalmas, Durood-e-Ibrahim, and Short Surahs with Arabic text and audio.</p>
 
+        <h3 style="margin-top: 14px;">The Six Kalmas</h3>
         <div class="kalma-grid">
           <div class="kalma-card">
             <div>
@@ -695,9 +681,7 @@
               <div class="arabic">لَا إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَّسُولُ اللَّهِ</div>
               <p class="hint">There is no deity worthy of worship except Allah, and Muhammad (peace be upon him) is the Messenger of Allah.</p>
             </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَّسُولُ اللَّهِ')">
-              Listen
-            </button>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَّسُولُ اللَّهِ')">Listen</button>
           </div>
 
           <div class="kalma-card">
@@ -706,9 +690,7 @@
               <div class="arabic">أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
               <p class="hint">I bear witness that there is no deity except Allah, alone without partner, and I bear witness that Muhammad is His servant and Messenger.</p>
             </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ')">
-              Listen
-            </button>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ')">Listen</button>
           </div>
 
           <div class="kalma-card">
@@ -717,9 +699,7 @@
               <div class="arabic">سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ</div>
               <p class="hint">Glory be to Allah, all praise is for Allah, there is no deity except Allah, and Allah is the Greatest.</p>
             </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ')">
-              Listen
-            </button>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ')">Listen</button>
           </div>
 
           <div class="kalma-card">
@@ -728,9 +708,7 @@
               <div class="arabic">لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ حَيٌّ لَا يَمُوتُ أَبَدًا أَبَدًا</div>
               <p class="hint">There is no deity except Allah alone; to Him belongs all dominion and praise, He gives life and causes death, and He is Ever-Living and never dies.</p>
             </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ')">
-              Listen
-            </button>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ')">Listen</button>
           </div>
 
           <div class="kalma-card">
@@ -739,9 +717,7 @@
               <div class="arabic">أَسْتَغْفِرُ اللَّهَ رَبِّي مِنْ كُلِّ ذَنْبٍ أَذْنَبْتُهُ عَمْدًا أَوْ خَطَأً سِرًّا أَوْ عَلَانِيَةً</div>
               <p class="hint">I seek forgiveness from Allah, my Lord, for every sin I committed intentionally or by mistake, in secret or in open.</p>
             </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('أَسْتَغْفِرُ اللَّهَ رَبِّي مِنْ كُلِّ ذَنْبٍ أَذْنَبْتُهُ عَمْدًا أَوْ خَطَأً سِرًّا أَوْ عَلَانِيَةً')">
-              Listen
-            </button>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('أَسْتَغْفِرُ اللَّهَ رَبِّي مِنْ كُلِّ ذَنْبٍ أَذْنَبْتُهُ عَمْدًا أَوْ خَطَأً سِرًّا أَوْ عَلَانِيَةً')">Listen</button>
           </div>
 
           <div class="kalma-card">
@@ -750,27 +726,77 @@
               <div class="arabic">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ أَنْ أُشْرِكَ بِكَ شَيْئًا وَأَنَا أَعْلَمُ وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ</div>
               <p class="hint">O Allah, I seek refuge in You from knowingly associating anything with You, and I seek Your forgiveness for what I do not know.</p>
             </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ أَنْ أُشْرِكَ بِكَ شَيْئًا وَأَنَا أَعْلَمُ وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ')">
-              Listen
-            </button>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ أَنْ أُشْرِكَ بِكَ شَيْئًا وَأَنَا أَعْلَمُ وَأَسْتَغْفِرُكَ لِمَا لَا أَعْلَمُ')">Listen</button>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 24px;">Short Surahs &amp; Special Recitations</h3>
+        <div class="kalma-grid">
+          <div class="kalma-card">
+            <div>
+              <div class="kalma-title">Surah Al-Ikhlas (112)</div>
+              <div class="arabic">قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ</div>
+              <p class="hint">Say, "He is Allah, [who is] One, Allah, the Eternal Refuge. He neither begets nor is born, nor is there to Him any equivalent."</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('قُلْ هُوَ اللَّهُ أَحَدٌ اللَّهُ الصَّمَدُ لَمْ يَلِدْ وَلَمْ يُولَدْ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ')">Listen</button>
+          </div>
+
+          <div class="kalma-card">
+            <div>
+              <div class="kalma-title">Surah Al-Falaq (113)</div>
+              <div class="arabic">قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ</div>
+              <p class="hint">Say, "I seek refuge in the Lord of daybreak from the evil of that which He created..."</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ')">Listen</button>
+          </div>
+
+          <div class="kalma-card">
+            <div>
+              <div class="kalma-title">Surah An-Nas (114)</div>
+              <div class="arabic">قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ</div>
+              <p class="hint">Say, "I seek refuge in the Lord of mankind, the Sovereign of mankind, the God of mankind..."</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('قُلْ أَعُوذُ بِرَبِّ النَّاسِ مَلِكِ النَّاسِ إِلَٰهِ النَّاسِ')">Listen</button>
+          </div>
+
+          <div class="kalma-card">
+            <div>
+              <div class="kalma-title">Durood-e-Ibrahim (Sending Blessings)</div>
+              <div class="arabic">اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</div>
+              <p class="hint">O Allah, send blessings upon Muhammad and upon the family of Muhammad, as You sent blessings upon Ibrahim and upon the family of Ibrahim.</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ')">Listen</button>
           </div>
         </div>
       </div>
 
-      <!-- TAB 4: INTERACTIVE TASBIH & EVERYDAY DUAS -->
+      <!-- TAB 4: CUSTOM TASBIH & EXPANDED DUAS -->
       <div id="tasbihTab" class="panel">
-        <h2>Digital Tasbih &amp; Daily Supplications</h2>
-        <p class="hint">Tap the circle to count remembrance peacefully, or listen to short everyday duas.</p>
+        <h2>Custom Digital Tasbih &amp; Daily Duas</h2>
+        <p class="hint">Pick any preset remembrance OR type your own custom Dhikr/Dua below to count on your personal Tasbih.</p>
 
         <div class="tasbih-box">
-          <div class="form-group" style="max-width: 340px; margin: 0 auto 10px;">
-            <label for="dhikrSelect">Choose Dhikr</label>
-            <select id="dhikrSelect" onchange="resetTasbih()">
-              <option value="سُبْحَانَ اللَّهِ|SubhanAllah (Glory be to Allah)">SubhanAllah — سُبْحَانَ اللَّهِ</option>
-              <option value="الْحَمْدُ لِلَّهِ|Alhamdulillah (All praise is for Allah)">Alhamdulillah — الْحَمْدُ لِلَّهِ</option>
-              <option value="اللَّهُ أَكْبَرُ|Allahu Akbar (Allah is the Greatest)">Allahu Akbar — اللَّهُ أَكْبَرُ</option>
-              <option value="أَسْتَغْفِرُ اللَّهَ|Astaghfirullah (I seek Allah's forgiveness)">Astaghfirullah — أَسْتَغْفِرُ اللَّهَ</option>
-            </select>
+          <div class="grid-2" style="text-align: left; max-width: 680px; margin: 0 auto 12px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="dhikrSelect">Select Preset or Saved Dhikr</label>
+              <select id="dhikrSelect" onchange="onDhikrSelectChange()"></select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="tasbihTarget">Target Count</label>
+              <select id="tasbihTarget">
+                <option value="33">33</option>
+                <option value="99">99</option>
+                <option value="100" selected>100</option>
+                <option value="1000">1000</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="max-width: 680px; margin: 0 auto 14px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <input type="text" id="customDhikrInput" placeholder="Write anything you want to recite (Arabic, Urdu, or English)..." style="flex: 2; min-width: 220px;" />
+            <input type="text" id="customDhikrNote" placeholder="Optional meaning / note..." style="flex: 1; min-width: 150px;" />
+            <button type="button" class="btn btn-sm" onclick="addCustomDhikr()">Add to Tasbih</button>
           </div>
 
           <div id="tasbihArabic" class="arabic" style="text-align: center; font-size: 28px;">سُبْحَانَ اللَّهِ</div>
@@ -788,39 +814,59 @@
           <div id="tasbihMilestone" class="status-note"></div>
         </div>
 
-        <h3 style="margin-top: 22px;">Short Everyday Duas</h3>
+        <h3 style="margin-top: 24px;">Everyday Masnoon &amp; Quranic Duas</h3>
         <div class="kalma-grid">
           <div class="kalma-card">
             <div>
-              <div class="kalma-title">Dua in Distress (Prophet Yunus's Supplication)</div>
+              <div class="kalma-title">1. Dua in Distress &amp; Worry</div>
               <div class="arabic">لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ</div>
               <p class="hint">There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers. (Surah Al-Anbya 21:87)</p>
             </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ')">
-              Listen
-            </button>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ')">Listen</button>
           </div>
 
           <div class="kalma-card">
             <div>
-              <div class="kalma-title">Dua for Ease &amp; Clarity</div>
+              <div class="kalma-title">2. Dua for Ease &amp; Clarity</div>
               <div class="arabic">رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي</div>
               <p class="hint">My Lord, expand for me my chest [with assurance] and ease for me my task. (Surah Ta-Ha 20:25-26)</p>
             </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي')">
-              Listen
-            </button>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي')">Listen</button>
           </div>
 
           <div class="kalma-card">
             <div>
-              <div class="kalma-title">Dua for Protection &amp; Peace</div>
+              <div class="kalma-title">3. Dua for Protection &amp; Trust</div>
               <div class="arabic">حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ</div>
               <p class="hint">Sufficient for us is Allah, and [He is] the best Disposer of affairs. (Surah Ali 'Imran 3:173)</p>
             </div>
-            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ')">
-              Listen
-            </button>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ')">Listen</button>
+          </div>
+
+          <div class="kalma-card">
+            <div>
+              <div class="kalma-title">4. Dua for Parents &amp; Family</div>
+              <div class="arabic">رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</div>
+              <p class="hint">My Lord, have mercy upon them as they brought me up [when I was] small. (Surah Al-Isra 17:24)</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا')">Listen</button>
+          </div>
+
+          <div class="kalma-card">
+            <div>
+              <div class="kalma-title">5. Dua for Knowledge &amp; Guidance</div>
+              <div class="arabic">رَبِّ زِدْنِي عِلْمًا</div>
+              <p class="hint">My Lord, increase me in knowledge. (Surah Ta-Ha 20:114)</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('رَبِّ زِدْنِي عِلْمًا')">Listen</button>
+          </div>
+          <div class="kalma-card">
+            <div>
+              <div class="kalma-title">6. Dua for Good in This World &amp; Hereafter</div>
+              <div class="arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+              <p class="hint">Our Lord, give us in this world [that which is] good and in the Hereafter [that which is] good and protect us from the punishment of the Fire. (Surah Al-Baqarah 2:201)</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ')">Listen</button>
           </div>
         </div>
       </div>
@@ -852,15 +898,31 @@
   </div>
 
   <script>
-    let profile = {
-      age: 24,
-      gender: "prefer_not",
-      maritalStatus: "single",
-      education: "not_specified"
-    };
+    const ALL_SURAHS = [
+      [1,"Al-Fatihah",7],[2,"Al-Baqarah",286],[3,"Ali 'Imran",200],[4,"An-Nisa",176],[5,"Al-Ma'idah",120],[6,"Al-An'am",165],
+      [7,"Al-A'raf",206],[8,"Al-Anfal",75],[9,"At-Tawbah",129],[10,"Yunus",109],[11,"Hud",123],[12,"Yusuf",111],
+      [13,"Ar-Ra'd",43],[14,"Ibrahim",52],[15,"Al-Hijr",99],[16,"An-Nahl",128],[17,"Al-Isra",111],[18,"Al-Kahf",110],
+      [19,"Maryam",98],[20,"Ta-Ha",135],[21,"Al-Anbya",112],[22,"Al-Hajj",78],[23,"Al-Mu'minun",118],[24,"An-Nur",64],
+      [25,"Al-Furqan",77],[26,"Ash-Shu'ara",227],[27,"An-Naml",93],[28,"Al-Qasas",88],[29,"Al-'Ankabut",69],[30,"Ar-Rum",60],
+      [31,"Luqman",34],[32,"As-Sajdah",30],[33,"Al-Ahzab",73],[34,"Saba",54],[35,"Fatir",45],[36,"Ya-Sin",83],
+      [37,"As-Saffat",182],[38,"Sad",88],[39,"Az-Zumar",75],[40,"Ghafir",85],[41,"Fussilat",54],[42,"Ash-Shuraa",53],
+      [43,"Az-Zukhruf",89],[44,"Ad-Dukhan",59],[45,"Al-Jathiyah",37],[46,"Al-Ahqaf",35],[47,"Muhammad",38],[48,"Al-Fath",29],
+      [49,"Al-Hujurat",18],[50,"Qaf",45],[51,"Adh-Dhariyat",60],[52,"At-Tur",49],[53,"An-Najm",62],[54,"Al-Qamar",55],
+      [55,"Ar-Rahman",78],[56,"Al-Waqi'ah",96],[57,"Al-Hadid",29],[58,"Al-Mujadila",22],[59,"Al-Hashr",24],[60,"Al-Mumtahanah",13],
+      [61,"As-Saf",14],[62,"Al-Jumu'ah",11],[63,"Al-Munafiqun",11],[64,"At-Taghabun",18],[65,"At-Talaq",12],[66,"At-Tahrim",12],
+      [67,"Al-Mulk",30],[68,"Al-Qalam",52],[69,"Al-Haqqah",52],[70,"Al-Ma'arij",44],[71,"Nuh",28],[72,"Al-Jinn",28],
+      [73,"Al-Muzzammil",20],[74,"Al-Muddaththir",56],[75,"Al-Qiyamah",40],[76,"Al-Insan",31],[77,"Al-Mursalat",50],[78,"An-Naba",40],
+      [79,"An-Nazi'at",46],[80,"'Abasa",42],[81,"At-Takwir",29],[82,"Al-Infitar",19],[83,"Al-Mutaffifin",36],[84,"Al-Inshiqaq",25],
+      [85,"Al-Buruj",22],[86,"At-Tariq",17],[87,"Al-A'la",19],[88,"Al-Ghashiyah",26],[89,"Al-Fajr",30],[90,"Al-Balad",20],
+      [91,"Ash-Shams",15],[92,"Al-Layl",21],[93,"Ad-Duhaa",11],[94,"Ash-Sharh",8],[95,"At-Tin",8],[96,"Al-'Alaq",19],
+      [97,"Al-Qadr",5],[98,"Al-Bayyinah",8],[99,"Az-Zalzalah",8],[100,"Al-'Adiyat",11],[101,"Al-Qari'ah",11],[102,"At-Takathur",8],
+      [103,"Al-'Asr",3],[104,"Al-Humazah",9],[105,"Al-Fil",5],[106,"Quraysh",4],[107,"Al-Ma'un",7],[108,"Al-Kawthar",3],
+      [109,"Al-Kafirun",6],[110,"An-Nasr",3],[111,"Al-Masad",5],[112,"Al-Ikhlas",4],[113,"Al-Falaq",5],[114,"An-Nas",6]
+    ];
 
+    let profile = { age: 20, gender: "female", maritalStatus: "single", education: "not_specified" };
     let currentAyahCode = "013028";
-    let currentRefTitle = "Surah Ar-Ra'd (13:28) — Peace in remembrance";
+    let currentGuidanceDua = "لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ";
     let breathTimer = null;
     let tasbihCounter = 0;
 
@@ -869,72 +931,684 @@
 
     const topics = [
       {
+        key: "headache_body_pain",
+        keywords: [
+          "headache", "head ache", "sir dard", "sar dard", "sir mein dard",
+          "body pain", "pain", "ache", "joint pain", "back pain", "dard",
+          "peen", "pen", "hurt", "sore", "muscle pain"
+        ],
+        title: "Guidance on Headache, Body Pain & Physical Aches",
+        reason: "Headaches or body aches often arise from dehydration, eye or screen strain, fatigue, stress, or physical exertion. In Islamic teachings, taking care of the body and turning to Allah for healing is a source of comfort and strength.",
+        solution: "Rest your head and eyes in a quiet, comfortable spot, drink water, check if you need rest or medical care, and recite healing verses and duas with calm trust.",
+        steps: [
+          "Drink water and step away from bright screens or noise for a few minutes.",
+          "Rest gently—and if the headache or body pain is severe, sudden, or keeps returning, consult a doctor.",
+          "Recite the verse and healing dua below calmly."
+        ],
+        arabic: "وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ",
+        ref: "Surah Al-Isra (17:82)",
+        translation: "Translation: 'And We send down of the Quran that which is healing and mercy for the believers...'",
+        ayahCode: "017082",
+        duaArabic: "اللَّهُمَّ رَبَّ النَّاسِ أَذْهِبِ الْبَاسَ اشْفِ وَأَنْتَ الشَّافِي لَا شِفَاءَ إِلَّا شِفَاؤُكَ شِفَاءً لَا يُغَادِرُ سَقَمًا",
+        duaMeaning: "Translation: 'O Allah, Lord of mankind, remove the affliction and heal, for You are the Healer; there is no healing except Your healing—a healing that leaves behind no illness.'"
+      },
+      {
         key: "anger",
-        keywords: ["angry", "anger", "mad", "temper", "rage", "frustrated", "fight"],
-        title: "Guidance on Anger & Emotional Heat",
-        reason: "Anger often rises when we feel hurt, unheard, or overwhelmed. In Islamic teachings, controlling anger and choosing forgiveness brings real inner strength.",
-        solution: "Pause before replying, change your posture or step away for a moment, do wudu (ablution) or wash your face with cool water, and speak softly.",
+        keywords: ["angry", "anger", "mad", "temper", "rage", "frustrated", "fight", "patience"],
+        title: "Guidance on Anger, Patience & Emotional Control",
+        reason: "Anger often surfaces when we feel disrespected, hurt, or stretched thin. Islam honors those who restrain anger and respond with dignity rather than harshness.",
+        solution: "Create space before reacting, lower your voice, change your physical posture, and choose forgiveness when possible.",
+        steps: [
+          "Pause for 10 seconds before replying or sending a message.",
+          "Drink a glass of cool water or perform wudu (ablution).",
+          "Ask yourself: will this argument matter a week from now?"
+        ],
         arabic: "وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ",
-        ref: "Surah Ali 'Imran (3:134) — Restraining anger & pardoning",
+        ref: "Surah Ali 'Imran (3:134)",
         translation: "Meaning: '...and those who restrain anger and pardon people...'",
-        ayahCode: "003134"
+        ayahCode: "003134",
+        duaArabic: "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
+        duaMeaning: "I seek refuge in Allah from the accursed Satan."
       },
       {
         key: "indecision",
-        keywords: ["decide", "decision", "confused", "stuck", "choice", "unsure", "what should i do"],
-        title: "Guidance on Difficult Decisions & Confusion",
-        reason: "Uncertainty happens when outcomes feel unclear or multiple options pull us in different directions. Islam encourages thoughtful consultation (shura) and trust after making a sincere choice.",
-        solution: "Break the decision into small pros and cons, ask someone wise and trustworthy for advice, pray for guidance, and move forward steadily.",
+        keywords: ["decide", "decision", "confused", "stuck", "choice", "unsure", "clarity"],
+        title: "Guidance on Difficult Decisions & Seeking Clarity",
+        reason: "Confusion happens when multiple paths carry uncertainty. Islamic guidance pairs thoughtful consultation with sincere reliance on Allah once you commit to a step.",
+        solution: "Weigh your options calmly, seek counsel from someone wise, pray for clarity, and take one committed step forward.",
+        steps: [
+          "Write down the top two choices and list what aligns with your values.",
+          "Consult one trustworthy person who has experience.",
+          "Pray two units of voluntary prayer (Istikharah) and act with trust."
+        ],
         arabic: "فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ",
-        ref: "Surah Ali 'Imran (3:159) — Trusting Allah after deciding",
+        ref: "Surah Ali 'Imran (3:159)",
         translation: "Meaning: 'Then when you have decided, put your trust in Allah.'",
-        ayahCode: "003159"
+        ayahCode: "003159",
+        duaArabic: "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي",
+        duaMeaning: "My Lord, expand for me my chest and ease for me my task."
       },
       {
         key: "illness",
-        keywords: ["sick", "ill", "illness", "pain", "health", "doctor", "fever", "unwell", "disease"],
-        title: "Guidance on Illness, Pain & Health Worries",
-        reason: "Physical or mental illness can feel exhausting and lonely. In faith, seeking proper treatment goes hand in hand with patience and hope in healing from Allah.",
-        solution: "Consult a qualified doctor or healthcare professional, rest without guilt, stay patient, and make sincere supplication for healing.",
+        keywords: ["sick", "ill", "illness", "health", "doctor", "fever", "unwell", "healing"],
+        title: "Guidance on Illness, Recovery & Physical Strength",
+        reason: "Illness can drain both body and spirit. In Islam, seeking medical treatment is encouraged alongside patience and hope in Allah as the ultimate Healer.",
+        solution: "Follow sound medical advice, allow your body proper rest, and nurture your spirit with gentle supplication.",
+        steps: [
+          "Follow your doctor's prescribed treatment and hydration.",
+          "Give yourself permission to rest without guilt.",
+          "Recite short healing supplications morning and evening."
+        ],
         arabic: "وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ",
-        ref: "Surah Ash-Shu'ara (26:80) — Healing & recovery",
+        ref: "Surah Ash-Shu'ara (26:80)",
         translation: "Meaning: 'And when I am ill, it is He who heals me.'",
-        ayahCode: "026080"
+        ayahCode: "026080",
+        duaArabic: "اللَّهُمَّ رَبَّ النَّاسِ أَذْهِبِ الْبَاسَ اشْفِ وَأَنْتَ الشَّافِي",
+        duaMeaning: "O Allah, Lord of mankind, remove the harm and heal, for You are the Healer."
       },
       {
         key: "hardship",
-        keywords: ["hardship", "struggle", "money", "job", "broke", "difficult", "sad", "hopeless", "loss"],
-        title: "Guidance on Hardship & Difficult Times",
-        reason: "Difficult seasons test our endurance, yet Quranic guidance reminds us that hardship is never permanent and relief arrives alongside struggle.",
-        solution: "Focus on one small step today rather than the whole mountain, keep honest effort going, reach out for support, and hold onto hope.",
+        keywords: ["hardship", "struggle", "money", "job", "broke", "financial", "provision", "sad"],
+        title: "Guidance on Financial Hardship & Provision",
+        reason: "Tightness in livelihood or sudden setbacks test patience, yet Quranic wisdom reminds us that ease is woven alongside every hardship.",
+        solution: "Pair steady, honest effort with gratitude and trust that provision comes from Allah in ways we may not yet see.",
+        steps: [
+          "List immediate essentials and cut one non-essential expense today.",
+          "Take one concrete action toward work, skill-building, or opportunity.",
+          "Give even a tiny act of kindness or charity to keep your heart open."
+        ],
         arabic: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
-        ref: "Surah Ash-Sharh (94:6) — Ease with hardship",
+        ref: "Surah Ash-Sharh (94:6)",
         translation: "Meaning: 'For indeed, with hardship [will be] ease.'",
-        ayahCode: "094006"
+        ayahCode: "094006",
+        duaArabic: "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
+        duaMeaning: "Sufficient for us is Allah, and He is the best Disposer of affairs."
       },
       {
         key: "relationships",
-        keywords: ["family", "parents", "marriage", "spouse", "lonely", "alone", "friend", "relationship", "home"],
-        title: "Guidance on Relationships, Home & Loneliness",
-        reason: "Misunderstandings, pride, or silence often create distance in relationships, while feeling alone can weigh heavily on the heart.",
-        solution: "Choose gentle words, listen to understand rather than win, forgive small faults, and stay connected with kind people and uplifting remembrance.",
+        keywords: ["family", "parents", "marriage", "spouse", "relationship", "home", "conflict"],
+        title: "Guidance on Family Harmony & Relationships",
+        reason: "Unspoken expectations and harsh words easily strain close bonds. Kind speech and patience soften hearts over time.",
+        solution: "Lead with gentleness, listen without interrupting, and protect mutual respect even during disagreements.",
+        steps: [
+          "Choose calm, respectful words even if the other person is upset.",
+          "Listen fully before explaining your own perspective.",
+          "Make a sincere dua for harmony in your home."
+        ],
         arabic: "وَقُولُوا لِلنَّاسِ حُسْنًا",
-        ref: "Surah Al-Baqarah (2:83) — Kind & gentle speech",
+        ref: "Surah Al-Baqarah (2:83)",
         translation: "Meaning: 'And speak good [and gentle] words to people.'",
-        ayahCode: "002083"
+        ayahCode: "002083",
+        duaArabic: "رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ",
+        duaMeaning: "Our Lord, grant us from among our spouses and offspring comfort to our eyes."
+      },
+      {
+        key: "loneliness",
+        keywords: ["lonely", "alone", "isolated", "disconnected", "nobody"],
+        title: "Guidance on Loneliness & Feeling Disconnected",
+        reason: "Feeling unseen or alone can weigh heavily on the heart, yet a believer is never truly alone—Allah is closer than we imagine.",
+        solution: "Reconnect spiritually through remembrance and take one small step to reach out to supportive community or family.",
+        steps: [
+          "Send a simple greeting to one kind friend or relative today.",
+          "Spend 5 quiet minutes reflecting on Quranic verses of closeness.",
+          "Join a positive learning, charity, or community circle."
+        ],
+        arabic: "وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ",
+        ref: "Surah Qaf (50:16)",
+        translation: "Meaning: 'And We are closer to him than [his] jugular vein.'",
+        ayahCode: "050016",
+        duaArabic: "رَبِّ لَا تَذَرْنِي فَرْدًا وَأَنْتَ خَيْرُ الْوَارِثِينَ",
+        duaMeaning: "My Lord, do not leave me alone, and You are the best of inheritors."
+      },
+      {
+        key: "forgiveness",
+        keywords: ["regret", "mistake", "guilt", "sin", "forgiveness", "repent", "fresh start"],
+        title: "Guidance on Regret, Forgiveness & A Fresh Start",
+        reason: "Carrying heavy guilt can make people feel unworthy, yet Allah's mercy encompasses all things whenever a heart turns back sincerely.",
+        solution: "Leave despair behind, seek sincere forgiveness, and replace past mistakes with good habits starting today.",
+        steps: [
+          "Acknowledge the mistake sincerely without losing hope in mercy.",
+          "If someone was hurt, apologize or make amends where possible.",
+          "Follow up with a good deed right away."
+        ],
+        arabic: "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ",
+        ref: "Surah Az-Zumar (39:53)",
+        translation: "Meaning: 'Say, O My servants who have transgressed against themselves, do not despair of the mercy of Allah.'",
+        ayahCode: "039053",
+        duaArabic: "أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ وَأَتُوبُ إِلَيْهِ",
+        duaMeaning: "I seek forgiveness from Allah, the Magnificent, and turn to Him in repentance."
+      },
+      {
+        key: "gratitude",
+        keywords: ["grateful", "gratitude", "thankful", "blessing", "grow", "closer"],
+        title: "Guidance on Gratitude & Spiritual Growth",
+        reason: "Gratitude shifts our focus from what is missing to the countless blessings already surrounding us, inviting even greater peace and increase.",
+        solution: "Notice small daily mercies, express thankfulness in words and actions, and use your blessings to benefit others.",
+        steps: [
+          "Name three blessings you enjoyed today, no matter how small.",
+          "Thank someone who helped you recently.",
+          "Say Alhamdulillah mindfully with appreciation."
+        ],
+        arabic: "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+        ref: "Surah Ibrahim (14:7)",
+        translation: "Meaning: 'If you are grateful, I will surely increase you [in favor].'",
+        ayahCode: "014007",
+        duaArabic: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+        duaMeaning: "All praise is due to Allah, Lord of the worlds."
+      },
+      {
+        key: "studies",
+        keywords: ["study", "studies", "exam", "work", "career", "pressure", "focus"],
+        title: "Guidance on Studies, Work & Focus",
+        reason: "Fear of failure or overwhelming workloads often blocks focus. Excellence in Islam comes from sincere effort paired with inner calm.",
+        solution: "Organize your work into focused intervals, ask for clarity, and leave the final outcome in Allah's hands.",
+        steps: [
+          "Pick just one task and work on it for 25 distraction-free minutes.",
+          "Recite a brief dua for understanding before starting.",
+          "Take a short stretch and water break before the next session."
+        ],
+        arabic: "وَقُل رَّبِّ زِدْنِي عِلْمًا",
+        ref: "Surah Ta-Ha (20:114)",
+        translation: "Meaning: 'And say, My Lord, increase me in knowledge.'",
+        ayahCode: "020114",
+        duaArabic: "رَبِّ زِدْنِي عِلْمًا وَارْزُقْنِي فَهْمًا",
+        duaMeaning: "My Lord, increase me in knowledge and grant me understanding."
+      },
+      <div class="kalma-card">
+            <div>
+              <div class="kalma-title">6. Dua for Good in This World &amp; Hereafter</div>
+              <div class="arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+              <p class="hint">Our Lord, give us in this world [that which is] good and in the Hereafter [that which is] good and protect us from the punishment of the Fire. (Surah Al-Baqarah 2:201)</p>
+            </div>
+            <button type="button" class="btn btn-gold btn-sm" onclick="speakArabic('رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ')">Listen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instant 60-Second Calm Modal -->
+  <div id="calmModal" class="modal-backdrop">
+    <div class="modal-card">
+      <h2 style="margin: 0 0 6px;">Instant 60-Second Calm</h2>
+      <p class="hint" style="margin: 0;">No forms needed — follow the breath and listen to Surah Ash-Sharh (94:6).</p>
+
+      <div id="breathCircle" class="breath-circle">
+        <span id="breathPhase">Breathe In</span>
+        <small id="breathCount" style="font-weight: 500; margin-top: 4px;">4s</small>
+      </div>
+
+      <p id="calmMessage" style="font-size: 14px; line-height: 1.55;">
+        With every hardship comes ease. Relax your shoulders and jaw.
+      </p>
+
+      <audio id="modalAudio" controls style="width: 100%; margin-top: 8px;"></audio>
+
+      <div style="margin-top: 14px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+        <button type="button" class="btn btn-gold btn-sm" onclick="playModalRecitation()">Play Verse Audio</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeInstantCalm()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ALL_SURAHS = [
+      [1,"Al-Fatihah",7],[2,"Al-Baqarah",286],[3,"Ali 'Imran",200],[4,"An-Nisa",176],[5,"Al-Ma'idah",120],[6,"Al-An'am",165],
+      [7,"Al-A'raf",206],[8,"Al-Anfal",75],[9,"At-Tawbah",129],[10,"Yunus",109],[11,"Hud",123],[12,"Yusuf",111],
+      [13,"Ar-Ra'd",43],[14,"Ibrahim",52],[15,"Al-Hijr",99],[16,"An-Nahl",128],[17,"Al-Isra",111],[18,"Al-Kahf",110],
+      [19,"Maryam",98],[20,"Ta-Ha",135],[21,"Al-Anbya",112],[22,"Al-Hajj",78],[23,"Al-Mu'minun",118],[24,"An-Nur",64],
+      [25,"Al-Furqan",77],[26,"Ash-Shu'ara",227],[27,"An-Naml",93],[28,"Al-Qasas",88],[29,"Al-'Ankabut",69],[30,"Ar-Rum",60],
+      [31,"Luqman",34],[32,"As-Sajdah",30],[33,"Al-Ahzab",73],[34,"Saba",54],[35,"Fatir",45],[36,"Ya-Sin",83],
+      [37,"As-Saffat",182],[38,"Sad",88],[39,"Az-Zumar",75],[40,"Ghafir",85],[41,"Fussilat",54],[42,"Ash-Shuraa",53],
+      [43,"Az-Zukhruf",89],[44,"Ad-Dukhan",59],[45,"Al-Jathiyah",37],[46,"Al-Ahqaf",35],[47,"Muhammad",38],[48,"Al-Fath",29],
+      [49,"Al-Hujurat",18],[50,"Qaf",45],[51,"Adh-Dhariyat",60],[52,"At-Tur",49],[53,"An-Najm",62],[54,"Al-Qamar",55],
+      [55,"Ar-Rahman",78],[56,"Al-Waqi'ah",96],[57,"Al-Hadid",29],[58,"Al-Mujadila",22],[59,"Al-Hashr",24],[60,"Al-Mumtahanah",13],
+      [61,"As-Saf",14],[62,"Al-Jumu'ah",11],[63,"Al-Munafiqun",11],[64,"At-Taghabun",18],[65,"At-Talaq",12],[66,"At-Tahrim",12],
+      [67,"Al-Mulk",30],[68,"Al-Qalam",52],[69,"Al-Haqqah",52],[70,"Al-Ma'arij",44],[71,"Nuh",28],[72,"Al-Jinn",28],
+      [73,"Al-Muzzammil",20],[74,"Al-Muddaththir",56],[75,"Al-Qiyamah",40],[76,"Al-Insan",31],[77,"Al-Mursalat",50],[78,"An-Naba",40],
+      [79,"An-Nazi'at",46],[80,"'Abasa",42],[81,"At-Takwir",29],[82,"Al-Infitar",19],[83,"Al-Mutaffifin",36],[84,"Al-Inshiqaq",25],
+      [85,"Al-Buruj",22],[86,"At-Tariq",17],[87,"Al-A'la",19],[88,"Al-Ghashiyah",26],[89,"Al-Fajr",30],[90,"Al-Balad",20],
+      [91,"Ash-Shams",15],[92,"Al-Layl",21],[93,"Ad-Duhaa",11],[94,"Ash-Sharh",8],[95,"At-Tin",8],[96,"Al-'Alaq",19],
+      [97,"Al-Qadr",5],[98,"Al-Bayyinah",8],[99,"Az-Zalzalah",8],[100,"Al-'Adiyat",11],[101,"Al-Qari'ah",11],[102,"At-Takathur",8],
+      [103,"Al-'Asr",3],[104,"Al-Humazah",9],[105,"Al-Fil",5],[106,"Quraysh",4],[107,"Al-Ma'un",7],[108,"Al-Kawthar",3],
+      [109,"Al-Kafirun",6],[110,"An-Nasr",3],[111,"Al-Masad",5],[112,"Al-Ikhlas",4],[113,"Al-Falaq",5],[114,"An-Nas",6]
+    ];
+
+    let profile = { age: 20, gender: "female", maritalStatus: "single", education: "not_specified" };
+    let currentAyahCode = "013028";
+    let currentGuidanceDua = "لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ";
+    let breathTimer = null;
+    let tasbihCounter = 0;
+
+    const themes = ["", "theme-sand", "theme-midnight"];
+    let currentThemeIdx = 0;
+
+    const topics = [
+      {
+        key: "headache_body_pain",
+        keywords: [
+          "headache", "head ache", "sir dard", "sar dard", "sir mein dard",
+          "body pain", "pain", "ache", "joint pain", "back pain", "dard",
+          "peen", "pen", "hurt", "sore", "muscle pain"
+        ],
+        title: "Guidance on Headache, Body Pain & Physical Aches",
+        reason: "Headaches or body aches often arise from dehydration, eye or screen strain, fatigue, stress, or physical exertion. In Islamic teachings, taking care of the body and turning to Allah for healing is a source of comfort and strength.",
+        solution: "Rest your head and eyes in a quiet, comfortable spot, drink water, check if you need rest or medical care, and recite healing verses and duas with calm trust.",
+        steps: [
+          "Drink water and step away from bright screens or noise for a few minutes.",
+          "Rest gently—and if the headache or body pain is severe, sudden, or keeps returning, consult a doctor.",
+          "Recite the verse and healing dua below calmly."
+        ],
+        arabic: "وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ",
+        ref: "Surah Al-Isra (17:82)",
+        translation: "Translation: 'And We send down of the Quran that which is healing and mercy for the believers...'",
+        ayahCode: "017082",
+        duaArabic: "اللَّهُمَّ رَبَّ النَّاسِ أَذْهِبِ الْبَاسَ اشْفِ وَأَنْتَ الشَّافِي لَا شِفَاءَ إِلَّا شِفَاؤُكَ شِفَاءً لَا يُغَادِرُ سَقَمًا",
+        duaMeaning: "Translation: 'O Allah, Lord of mankind, remove the affliction and heal, for You are the Healer; there is no healing except Your healing—a healing that leaves behind no illness.'"
+      },
+      {
+        key: "anger",
+        keywords: ["angry", "anger", "mad", "temper", "rage", "frustrated", "fight", "patience"],
+        title: "Guidance on Anger, Patience & Emotional Control",
+        reason: "Anger often surfaces when we feel disrespected, hurt, or stretched thin. Islam honors those who restrain anger and respond with dignity rather than harshness.",
+        solution: "Create space before reacting, lower your voice, change your physical posture, and choose forgiveness when possible.",
+        steps: [
+          "Pause for 10 seconds before replying or sending a message.",
+          "Drink a glass of cool water or perform wudu (ablution).",
+          "Ask yourself: will this argument matter a week from now?"
+        ],
+        arabic: "وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ",
+        ref: "Surah Ali 'Imran (3:134)",
+        translation: "Meaning: '...and those who restrain anger and pardon people...'",
+        ayahCode: "003134",
+        duaArabic: "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
+        duaMeaning: "I seek refuge in Allah from the accursed Satan."
+      },
+      {
+        key: "indecision",
+        keywords: ["decide", "decision", "confused", "stuck", "choice", "unsure", "clarity"],
+        title: "Guidance on Difficult Decisions & Seeking Clarity",
+        reason: "Confusion happens when multiple paths carry uncertainty. Islamic guidance pairs thoughtful consultation with sincere reliance on Allah once you commit to a step.",
+        solution: "Weigh your options calmly, seek counsel from someone wise, pray for clarity, and take one committed step forward.",
+        steps: [
+          "Write down the top two choices and list what aligns with your values.",
+          "Consult one trustworthy person who has experience.",
+          "Pray two units of voluntary prayer (Istikharah) and act with trust."
+        ],
+        arabic: "فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ",
+        ref: "Surah Ali 'Imran (3:159)",
+        translation: "Meaning: 'Then when you have decided, put your trust in Allah.'",
+        ayahCode: "003159",
+        duaArabic: "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي",
+        duaMeaning: "My Lord, expand for me my chest and ease for me my task."
+      },
+      {
+        key: "illness",
+        keywords: ["sick", "ill", "illness", "health", "doctor", "fever", "unwell", "healing"],
+        title: "Guidance on Illness, Recovery & Physical Strength",
+        reason: "Illness can drain both body and spirit. In Islam, seeking medical treatment is encouraged alongside patience and hope in Allah as the ultimate Healer.",
+        solution: "Follow sound medical advice, allow your body proper rest, and nurture your spirit with gentle supplication.",
+        steps: [
+          "Follow your doctor's prescribed treatment and hydration.",
+          "Give yourself permission to rest without guilt.",
+          "Recite short healing supplications morning and evening."
+        ],
+        arabic: "وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ",
+        ref: "Surah Ash-Shu'ara (26:80)",
+        translation: "Meaning: 'And when I am ill, it is He who heals me.'",
+        ayahCode: "026080",
+        duaArabic: "اللَّهُمَّ رَبَّ النَّاسِ أَذْهِبِ الْبَاسَ اشْفِ وَأَنْتَ الشَّافِي",
+        duaMeaning: "O Allah, Lord of mankind, remove the harm and heal, for You are the Healer."
+      },
+      {
+        key: "hardship",
+        keywords: ["hardship", "struggle", "money", "job", "broke", "financial", "provision", "sad"],
+        title: "Guidance on Financial Hardship & Provision",
+        reason: "Tightness in livelihood or sudden setbacks test patience, yet Quranic wisdom reminds us that ease is woven alongside every hardship.",
+        solution: "Pair steady, honest effort with gratitude and trust that provision comes from Allah in ways we may not yet see.",
+        steps: [
+          "List immediate essentials and cut one non-essential expense today.",
+          "Take one concrete action toward work, skill-building, or opportunity.",
+          "Give even a tiny act of kindness or charity to keep your heart open."
+        ],
+        arabic: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
+        ref: "Surah Ash-Sharh (94:6)",
+        translation: "Meaning: 'For indeed, with hardship [will be] ease.'",
+        ayahCode: "094006",
+        duaArabic: "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
+        duaMeaning: "Sufficient for us is Allah, and He is the best Disposer of affairs."
+      },
+      {
+        key: "relationships",
+        keywords: ["family", "parents", "marriage", "spouse", "relationship", "home", "conflict"],
+        title: "Guidance on Family Harmony & Relationships",
+        reason: "Unspoken expectations and harsh words easily strain close bonds. Kind speech and patience soften hearts over time.",
+        solution: "Lead with gentleness, listen without interrupting, and protect mutual respect even during disagreements.",
+        steps: [
+          "Choose calm, respectful words even if the other person is upset.",
+          "Listen fully before explaining your own perspective.",
+          "Make a sincere dua for harmony in your home."
+        ],
+        arabic: "وَقُولُوا لِلنَّاسِ حُسْنًا",
+        ref: "Surah Al-Baqarah (2:83)",
+        translation: "Meaning: 'And speak good [and gentle] words to people.'",
+        ayahCode: "002083",
+        duaArabic: "رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ",
+        duaMeaning: "Our Lord, grant us from among our spouses and offspring comfort to our eyes."
+      },
+      {
+        key: "loneliness",
+        keywords: ["lonely", "alone", "isolated", "disconnected", "nobody"],
+        title: "Guidance on Loneliness & Feeling Disconnected",
+        reason: "Feeling unseen or alone can weigh heavily on the heart, yet a believer is never truly alone—Allah is closer than we imagine.",
+        solution: "Reconnect spiritually through remembrance and take one small step to reach out to supportive community or family.",
+        steps: [
+          "Send a simple greeting to one kind friend or relative today.",
+          "Spend 5 quiet minutes reflecting on Quranic verses of closeness.",
+          "Join a positive learning, charity, or community circle."
+        ],
+        arabic: "وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ",
+        ref: "Surah Qaf (50:16)",
+        translation: "Meaning: 'And We are closer to him than [his] jugular vein.'",
+        ayahCode: "050016",
+        duaArabic: "رَبِّ لَا تَذَرْنِي فَرْدًا وَأَنْتَ خَيْرُ الْوَارِثِينَ",
+        duaMeaning: "My Lord, do not leave me alone, and You are the best of inheritors."
+      },
+      {
+        key: "forgiveness",
+        keywords: ["regret", "mistake", "guilt", "sin", "forgiveness", "repent", "fresh start"],
+        title: "Guidance on Regret, Forgiveness & A Fresh Start",
+        reason: "Carrying heavy guilt can make people feel unworthy, yet Allah's mercy encompasses all things whenever a heart turns back sincerely.",
+        solution: "Leave despair behind, seek sincere forgiveness, and replace past mistakes with good habits starting today.",
+        steps: [
+          "Acknowledge the mistake sincerely without losing hope in mercy.",
+          "If someone was hurt, apologize or make amends where possible.",
+          "Follow up with a good deed right away."
+        ],
+        arabic: "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ",
+        ref: "Surah Az-Zumar (39:53)",
+        translation: "Meaning: 'Say, O My servants who have transgressed against themselves, do not despair of the mercy of Allah.'",
+        ayahCode: "039053",
+        duaArabic: "أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ وَأَتُوبُ إِلَيْهِ",
+        duaMeaning: "I seek forgiveness from Allah, the Magnificent, and turn to Him in repentance."
+      },
+      {
+        key: "gratitude",
+        keywords: ["grateful", "gratitude", "thankful", "blessing", "grow", "closer"],
+        title: "Guidance on Gratitude & Spiritual Growth",
+        reason: "Gratitude shifts our focus from what is missing to the countless blessings already surrounding us, inviting even greater peace and increase.",
+        solution: "Notice small daily mercies, express thankfulness in words and actions, and use your blessings to benefit others.",
+        steps: [
+          "Name three blessings you enjoyed today, no matter how small.",
+          "Thank someone who helped you recently.",
+          "Say Alhamdulillah mindfully with appreciation."
+        ],
+        arabic: "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+        ref: "Surah Ibrahim (14:7)",
+        translation: "Meaning: 'If you are grateful, I will surely increase you [in favor].'",
+        ayahCode: "014007",
+        duaArabic: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+        duaMeaning: "All praise is due to Allah, Lord of the worlds."
+      },
+      {
+        key: "studies",
+        keywords: ["study", "studies", "exam", "work", "career", "pressure", "focus"],
+        title: "Guidance on Studies, Work & Focus",
+        reason: "Fear of failure or overwhelming workloads often blocks focus. Excellence in Islam comes from sincere effort paired with inner calm.",
+        solution: "Organize your work into focused intervals, ask for clarity, and leave the final outcome in Allah's hands.",
+        steps: [
+          "Pick just one task and work on it for 25 distraction-free minutes.",
+          "Recite a brief dua for understanding before starting.",
+          "Take a short stretch and water break before the next session."
+        ],
+        arabic: "وَقُل رَّبِّ زِدْنِي عِلْمًا",
+        ref: "Surah Ta-Ha (20:114)",
+        translation: "Meaning: 'And say, My Lord, increase me in knowledge.'",
+        ayahCode: "020114",
+        duaArabic: "رَبِّ زِدْنِي عِلْمًا وَارْزُقْنِي فَهْمًا",
+        duaMeaning: "My Lord, increase me in knowledge and grant me understanding."
       },
       {
         key: "anxiety",
         keywords: ["anxious", "anxiety", "scared", "afraid", "fear", "panic", "stress", "worried", "worry"],
         title: "Guidance on Anxiety, Fear & Restlessness",
-        reason: "When the mind races into 'what-if' scenarios, restlessness grows. From an Islamic perspective, true heart stillness is rooted in remembering Allah and trusting Him.",
-        solution: "Take slow deep breaths, ground yourself in this exact room and moment, talk to someone you trust, and keep calm remembrance part of your day.",
+        reason: "When the mind races into 'what-if' scenarios, restlessness grows. True heart stillness is rooted in remembering Allah and grounding yourself in the present moment.",
+        solution: "Slow your breathing, step away from overwhelming thoughts, and anchor your heart in remembrance.",
+        steps: [
+          "Inhale slowly for 4 seconds, hold for 4, and exhale for 6.",
+          "Name 3 steady things you can see around you right now.",
+          "Listen to a calming verse and let your shoulders relax."
+        ],
         arabic: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
-        ref: "Surah Ar-Ra'd (13:28) — Peace in remembrance",
+        ref: "Surah Ar-Ra'd (13:28)",
         translation: "Meaning: 'Unquestionably, by the remembrance of Allah hearts are assured.'",
-        ayahCode: "013028"
+        ayahCode: "013028",
+        duaArabic: "لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",
+        duaMeaning: "There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers."
       }
     ];
+
+    function pad3(num) {
+      return String(num).padStart(3, "0");
+    }
+
+    function initSurahDropdown() {
+      const surahSel = document.getElementById("surahSelect");
+      surahSel.innerHTML = ALL_SURAHS.map(([num, name, ayahs]) =>
+        `<option value="${num}">${num}. Surah ${name} (${ayahs} Ayahs)</option>`
+      ).join("");
+      onSurahChange();
+    }
+
+    function onSurahChange() {
+      const surahNum = parseInt(document.getElementById("surahSelect").value, 10) || 1;
+      const found = ALL_SURAHS.find(s => s[0] === surahNum) || ALL_SURAHS[0];
+      const totalAyahs = found[2];
+
+      const ayahSel = document.getElementById("ayahNumberSelect");
+      let opts = "";
+      for (let i = 1; i <= totalAyahs; i++) {
+        opts += `<option value="${i}">Ayah ${i}</option>`;
+      }
+      ayahSel.innerHTML = opts;
+      document.getElementById("readerMeta").innerText = `${totalAyahs} Ayahs`;
+      loadSelectedAyahText();
+    }
+
+    async function loadSelectedAyahText() {
+      const surahNum = parseInt(document.getElementById("surahSelect").value, 10) || 1;
+      const ayahNum = parseInt(document.getElementById("ayahNumberSelect").value, 10) || 1;
+      const found = ALL_SURAHS.find(s => s[0] === surahNum) || ALL_SURAHS[0];
+
+      document.getElementById("readerSurahLabel").innerText = `Surah ${found[1]} (${surahNum}:${ayahNum})`;
+      document.getElementById("readerArabic").innerText = "Loading Arabic text...";
+      document.getElementById("readerTranslation").innerText = "Loading translation...";
+
+      try {
+        const res = await fetch(`https://api.alquran.cloud/v1/ayah/${surahNum}:${ayahNum}/editions/quran-uthmani,en.sahih`);
+        const json = await res.json();
+        if (json && json.data && json.data.length >= 2) {
+          document.getElementById("readerArabic").innerText = json.data[0].text;
+          document.getElementById("readerTranslation").innerText = json.data[1].text;
+        } else {
+          throw new Error("Unavailable");
+        }
+      } catch (e) {
+        document.getElementById("readerArabic").innerText = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ";
+        document.getElementById("readerTranslation").innerText = "Connect to the internet to display full text for this Ayah, or press Play to stream recitation.";
+      }
+    }
+
+    function playSurahAyahAudio() {
+      stopSpeech();
+      const surahNum = parseInt(document.getElementById("surahSelect").value, 10) || 1;
+      const ayahNum = parseInt(document.getElementById("ayahNumberSelect").value, 10) || 1;
+      const qari = document.getElementById("qariSelectTab").value;
+      const code = `${pad3(surahNum)}${pad3(ayahNum)}`;
+
+      const audioEl = document.getElementById("tabAudio");
+      const statusEl = document.getElementById("tabAudioStatus");
+      audioEl.src = `https://everyayah.com/data/${qari}/${code}.mp3`;
+      statusEl.innerText = "Loading recitation...";
+      audioEl.play().then(() => {
+        statusEl.innerText = "Playing recitation.";
+      }).catch(() => {
+        statusEl.innerText = "Unable to play audio right now. Please check your internet connection.";
+      });
+    }
+
+    function playNextAyah() {
+      const ayahSel = document.getElementById("ayahNumberSelect");
+      if (ayahSel.selectedIndex < ayahSel.options.length - 1) {
+        ayahSel.selectedIndex += 1;
+        loadSelectedAyahText();
+        playSurahAyahAudio();
+      }
+    }
+
+    function saveSurahFavorite() {
+      const surahNum = parseInt(document.getElementById("surahSelect").value, 10) || 1;
+      const ayahNum = parseInt(document.getElementById("ayahNumberSelect").value, 10) || 1;
+      const found = ALL_SURAHS.find(s => s[0] === surahNum) || ALL_SURAHS[0];
+      const label = `Surah ${found[1]} (${surahNum}:${ayahNum})`;
+
+      const list = getFavorites();
+      const key = `${surahNum}:${ayahNum}`;
+      if (!list.some(item => item.key === key)) {
+        list.push({ key, surahNum, ayahNum, label });
+        localStorage.setItem("pop_surah_favs", JSON.stringify(list));
+      }
+      renderFavorites();
+      document.getElementById("tabAudioStatus").innerText = `Saved ${label} to Favorites.`;
+    }
+
+    function getFavorites() {
+      try {
+        return JSON.parse(localStorage.getItem("pop_surah_favs") || "[]");
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function removeFavorite(key) {
+      const updated = getFavorites().filter(item => item.key !== key);
+      localStorage.setItem("pop_surah_favs", JSON.stringify(updated));
+      renderFavorites();
+    }
+
+    function playFavoriteAyah(surahNum, ayahNum) {
+      document.getElementById("surahSelect").value = surahNum;
+      onSurahChange();
+      document.getElementById("ayahNumberSelect").value = ayahNum;
+      loadSelectedAyahText();
+      playSurahAyahAudio();
+    }
+
+    function renderFavorites() {
+      const container = document.getElementById("favoriteVersesList");
+      if (!container) return;
+      const list = getFavorites();
+
+      if (!list.length) {
+        container.innerHTML = `<div class="hint">No favorite Ayahs saved yet.</div>`;
+        return;
+      }
+
+      container.innerHTML = list.map(item => `
+        <div class="saved-item">
+          <span>${item.label}</span>
+          <div style="display:flex; gap:6px;">
+            <button type="button" class="btn btn-gold btn-sm" onclick="playFavoriteAyah(${item.surahNum}, ${item.ayahNum})">Play</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="removeFavorite('${item.key}')">Remove</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    const DEFAULT_DHIKR = [
+      { arabic: "سُبْحَانَ اللَّهِ", note: "SubhanAllah (Glory be to Allah)" },
+      { arabic: "الْحَمْدُ لِلَّهِ", note: "Alhamdulillah (All praise is for Allah)" },
+      { arabic: "اللَّهُ أَكْبَرُ", note: "Allahu Akbar (Allah is the Greatest)" },
+      { arabic: "أَسْتَغْفِرُ اللَّهَ", note: "Astaghfirullah (I seek Allah's forgiveness)" },
+      { arabic: "لَا إِلٰهَ إِلَّا اللَّهُ", note: "La ilaha illallah (There is no deity except Allah)" },
+      { arabic: "اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ", note: "Durood Shareef (Blessings upon Prophet Muhammad)" }
+    ];
+
+    function getAllDhikrList() {
+      let custom = [];
+      try {
+        custom = JSON.parse(localStorage.getItem("pop_custom_dhikr") || "[]");
+      } catch (e) {
+        custom = [];
+      }
+      return [...DEFAULT_DHIKR, ...custom];
+    }
+
+    function renderDhikrDropdown(selectLast = false) {
+      const sel = document.getElementById("dhikrSelect");
+      const list = getAllDhikrList();
+      sel.innerHTML = list.map((d, idx) =>
+        `<option value="${idx}">${d.arabic} ${d.note ? "— " + d.note : ""}</option>`
+      ).join("");
+      if (selectLast) sel.selectedIndex = list.length - 1;
+      onDhikrSelectChange();
+    }
+
+    function addCustomDhikr() {
+      const text = document.getElementById("customDhikrInput").value.trim();
+      const note = document.getElementById("customDhikrNote").value.trim();
+      if (!text) return;
+
+      let custom = [];
+      try {
+        custom = JSON.parse(localStorage.getItem("pop_custom_dhikr") || "[]");
+      } catch (e) {
+        custom = [];
+      }
+      custom.push({ arabic: text, note: note || "Custom Remembrance" });
+      localStorage.setItem("pop_custom_dhikr", JSON.stringify(custom));
+
+      document.getElementById("customDhikrInput").value = "";
+      document.getElementById("customDhikrNote").value = "";
+      renderDhikrDropdown(true);
+    }
+
+    function onDhikrSelectChange() {
+      tasbihCounter = 0;
+      document.getElementById("tasbihCount").innerText = "0";
+      document.getElementById("tasbihMilestone").innerText = "";
+
+      const idx = parseInt(document.getElementById("dhikrSelect").value, 10) || 0;
+      const list = getAllDhikrList();
+      const chosen = list[idx] || DEFAULT_DHIKR[0];
+
+      document.getElementById("tasbihArabic").innerText = chosen.arabic;
+      document.getElementById("tasbihMeaning").innerText = chosen.note || "";
+    }
+
+    function incrementTasbih() {
+      tasbihCounter++;
+      document.getElementById("tasbihCount").innerText = tasbihCounter;
+      const target = parseInt(document.getElementById("tasbihTarget").value, 10) || 100;
+      const note = document.getElementById("tasbihMilestone");
+
+      if (tasbihCounter === target) {
+        note.innerText = `Target of ${target} reached! May your heart find peace.`;
+      } else {
+        note.innerText = `${tasbihCounter} / ${target}`;
+      }
+    }
+
+    function resetTasbih() {
+      tasbihCounter = 0;
+      document.getElementById("tasbihCount").innerText = "0";
+      document.getElementById("tasbihMilestone").innerText = "";
+    }
+
+    function speakCurrentDhikr() {
+      const text = document.getElementById("tasbihArabic").innerText;
+      speakArabic(text);
+    }
 
     function cycleTheme() {
       currentThemeIdx = (currentThemeIdx + 1) % themes.length;
@@ -948,7 +1622,6 @@
       document.getElementById(tabId).classList.add("active");
       if (btnEl) btnEl.classList.add("active");
       renderFavorites();
-      renderCalmNotes();
     }
 
     function quickFillMood(text) {
@@ -1006,7 +1679,7 @@
 
     function findMatchingTopic(text) {
       const lower = (text || "").toLowerCase();
-      let best = topics[5];
+      let best = topics[topics.length - 1];
       let bestScore = 0;
 
       for (const t of topics) {
@@ -1022,43 +1695,33 @@
       return best;
     }
 
-    function adaptTextForAge(text, age, kind) {
-      if (age < 13) {
-        return kind === "reason"
-          ? `${text} Even kids feel big emotions sometimes, and asking for help is a smart step.`
-          : `${text} Talk to a trusted parent, teacher, or caring adult near you too.`;
-      }
-      if (age >= 60) {
-        return kind === "reason"
-          ? `${text} Carrying years of responsibility can make even small worries feel heavier.`
-          : `${text} Take things at a gentle pace and lean on steady prayer and peace of mind.`;
-      }
-      return text;
-    }
-
     function analyzeProblem() {
       stopAllAudio();
-      document.getElementById("followupSupport").classList.remove("active");
-
       const rawInput = document.getElementById("problemInput").value.trim();
       const matched = findMatchingTopic(rawInput);
       currentAyahCode = matched.ayahCode;
-      currentRefTitle = matched.ref;
+      currentGuidanceDua = matched.duaArabic;
 
       const details = getGroupDetails(profile.age, profile.gender);
       document.getElementById("profileSummaryBadge").innerText =
         `${details.label} • Age ${profile.age}`;
 
       document.getElementById("matchedTopicTitle").innerText = matched.title;
-      document.getElementById("outReason").innerText = adaptTextForAge(matched.reason, profile.age, "reason");
-      document.getElementById("outSolution").innerText = adaptTextForAge(matched.solution, profile.age, "solution");
+      document.getElementById("outReason").innerText = matched.reason;
+      document.getElementById("outSolution").innerText = matched.solution;
+      document.getElementById("outSteps").innerHTML = matched.steps.map(s => `<li>${s}</li>`).join("");
       document.getElementById("outArabic").innerText = matched.arabic;
       document.getElementById("outRef").innerText = `Reference: ${matched.ref}`;
       document.getElementById("outTranslation").innerText = matched.translation;
+      document.getElementById("outDuaArabic").innerText = matched.duaArabic;
+      document.getElementById("outDuaMeaning").innerText = matched.duaMeaning;
       document.getElementById("audioStatus").innerText = "";
 
-      renderCalmNotes();
       showStep("step3");
+    }
+
+    function speakCurrentGuidanceDua() {
+      speakArabic(currentGuidanceDua);
     }
 
     function copyGuidanceText() {
@@ -1069,161 +1732,12 @@
       const ref = document.getElementById("outRef").innerText;
       const trans = document.getElementById("outTranslation").innerText;
 
-      const fullText = `${title}\n\nWhy: ${reason}\n\nWay Forward: ${solution}\n\n${arabic}\n${ref}\n${trans}`;
+      const fullText = `${title}\n\nPerspective: ${reason}\n\nWay Forward: ${solution}\n\n${arabic}\n${ref}\n${trans}`;
       if (navigator.clipboard) {
         navigator.clipboard.writeText(fullText).then(() => {
           document.getElementById("audioStatus").innerText = "Guidance copied to clipboard.";
         });
       }
-    }
-
-    function handleCheckin(state) {
-      const box = document.getElementById("followupSupport");
-      const msg = document.getElementById("followupMessage");
-      box.classList.add("active");
-
-      if (state === "calmer") {
-        msg.innerText = "Alhamdulillah — even a small moment of calm matters. Keep that gentle pace going.";
-      } else {
-        msg.innerText = "It is okay if the weight hasn't lifted yet. You don't have to rush healing — try this short remembrance and let your shoulders drop:";
-      }
-    }
-
-    function incrementTasbih() {
-      tasbihCounter++;
-      document.getElementById("tasbihCount").innerText = tasbihCounter;
-      const note = document.getElementById("tasbihMilestone");
-      if (tasbihCounter === 33) {
-        note.innerText = "33 completed — a calm milestone.";
-      } else if (tasbihCounter === 100) {
-        note.innerText = "100 completed — steady remembrance brings stillness.";
-      } else {
-        note.innerText = "";
-      }
-    }
-
-    function resetTasbih() {
-      tasbihCounter = 0;
-      document.getElementById("tasbihCount").innerText = "0";
-      document.getElementById("tasbihMilestone").innerText = "";
-      const val = document.getElementById("dhikrSelect").value.split("|");
-      document.getElementById("tasbihArabic").innerText = val[0];
-      document.getElementById("tasbihMeaning").innerText = val[1];
-    }
-
-    function speakCurrentDhikr() {
-      const val = document.getElementById("dhikrSelect").value.split("|");
-      speakArabic(val[0]);
-    }
-
-    function getFavorites() {
-      try {
-        return JSON.parse(localStorage.getItem("pop_favorites") || "[]");
-      } catch (e) {
-        return [];
-      }
-    }
-
-    function addFavoriteItem(code, label) {
-      const list = getFavorites();
-      if (!list.some(item => item.code === code)) {
-        list.push({ code, label });
-        localStorage.setItem("pop_favorites", JSON.stringify(list));
-      }
-      renderFavorites();
-    }
-
-    function saveCurrentFavorite() {
-      addFavoriteItem(currentAyahCode, currentRefTitle);
-      document.getElementById("audioStatus").innerText = "Saved to Favorite Verses.";
-    }
-
-    function saveSelectedTabFavorite() {
-      const sel = document.getElementById("ayahSelectTab");
-      const code = sel.value;
-      const label = sel.options[sel.selectedIndex].text;
-      addFavoriteItem(code, label);
-      document.getElementById("tabAudioStatus").innerText = "Saved to Favorite Verses.";
-    }
-
-    function removeFavorite(code) {
-      const updated = getFavorites().filter(item => item.code !== code);
-      localStorage.setItem("pop_favorites", JSON.stringify(updated));
-      renderFavorites();
-    }
-
-    function playFavoriteCode(code) {
-      document.getElementById("ayahSelectTab").value = code;
-      playSelectedTabTilawat();
-    }
-
-    function renderFavorites() {
-      const container = document.getElementById("favoriteVersesList");
-      if (!container) return;
-      const list = getFavorites();
-
-      if (!list.length) {
-        container.innerHTML = `<div class="hint">No favorite verses saved yet.</div>`;
-        return;
-      }
-
-      container.innerHTML = list.map(item => `
-        <div class="saved-item">
-          <span>${item.label}</span>
-          <div style="display:flex; gap:6px;">
-            <button type="button" class="btn btn-gold btn-sm" onclick="playFavoriteCode('${item.code}')">Play</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="removeFavorite('${item.code}')">Remove</button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function getCalmNotes() {
-      try {
-        return JSON.parse(localStorage.getItem("pop_notes") || "[]");
-      } catch (e) {
-        return [];
-      }
-    }
-
-    function saveCalmNote() {
-      const input = document.getElementById("calmNoteInput");
-      const text = input.value.trim();
-      if (!text) return;
-
-      const notes = getCalmNotes();
-      notes.unshift({ id: Date.now(), text });
-      localStorage.setItem("pop_notes", JSON.stringify(notes.slice(0, 8)));
-      input.value = "";
-      renderCalmNotes();
-    }
-
-    function deleteCalmNote(id) {
-      const updated = getCalmNotes().filter(n => n.id !== id);
-      localStorage.setItem("pop_notes", JSON.stringify(updated));
-      renderCalmNotes();
-    }
-
-    function renderCalmNotes() {
-      const container = document.getElementById("savedNotesList");
-      if (!container) return;
-      const notes = getCalmNotes();
-
-      if (!notes.length) {
-        container.innerHTML = `<div class="hint">No personal notes saved yet.</div>`;
-        return;
-      }
-
-      container.innerHTML = notes.map(n => `
-        <div class="saved-item">
-          <span>${n.text}</span>
-          <button type="button" class="btn btn-secondary btn-sm" onclick="deleteCalmNote(${n.id})">Delete</button>
-        </div>
-      `).join("");
-    }
-
-    function buildEveryAyahUrl(qari, ayahCode) {
-      return `https://everyayah.com/data/${qari}/${ayahCode}.mp3`;
     }
 
     function playGuidanceTilawat() {
@@ -1232,29 +1746,13 @@
       const audioEl = document.getElementById("guidanceAudio");
       const statusEl = document.getElementById("audioStatus");
 
-      audioEl.src = buildEveryAyahUrl(qari, currentAyahCode);
+      audioEl.src = `https://everyayah.com/data/${qari}/${currentAyahCode}.mp3`;
       statusEl.innerText = "Loading recitation...";
       audioEl.play().then(() => {
         statusEl.innerText = "Playing recitation.";
       }).catch(() => {
         statusEl.innerText = "Could not stream audio; playing fallback voice.";
         speakArabic(document.getElementById("outArabic").innerText);
-      });
-    }
-
-    function playSelectedTabTilawat() {
-      stopSpeech();
-      const qari = document.getElementById("qariSelectTab").value;
-      const ayahCode = document.getElementById("ayahSelectTab").value;
-      const audioEl = document.getElementById("tabAudio");
-      const statusEl = document.getElementById("tabAudioStatus");
-
-      audioEl.src = buildEveryAyahUrl(qari, ayahCode);
-      statusEl.innerText = "Loading recitation...";
-      audioEl.play().then(() => {
-        statusEl.innerText = "Playing recitation.";
-      }).catch(() => {
-        statusEl.innerText = "Unable to play audio right now. Please check your internet connection.";
       });
     }
 
@@ -1274,7 +1772,7 @@
       const reason = document.getElementById("outReason").innerText;
       const solution = document.getElementById("outSolution").innerText;
 
-      const u = new SpeechSynthesisUtterance(`${translation}. Why this happens: ${reason}. Way forward: ${solution}`);
+      const u = new SpeechSynthesisUtterance(`${translation}. Perspective: ${reason}. Way forward: ${solution}`);
       u.lang = "en-US";
       u.rate = 0.96;
       window.speechSynthesis.speak(u);
@@ -1377,7 +1875,7 @@
     function playModalRecitation() {
       const qari = document.getElementById("qariSelectGuidance")?.value || "Alafasy_128kbps";
       const audioEl = document.getElementById("modalAudio");
-      audioEl.src = buildEveryAyahUrl(qari, "094006");
+      audioEl.src = `https://everyayah.com/data/${qari}/094006.mp3`;
       audioEl.play().catch(() => {});
     }
 
@@ -1386,8 +1884,9 @@
       document.getElementById(stepId).classList.add("active");
     }
 
+    initSurahDropdown();
+    renderDhikrDropdown();
     renderFavorites();
-    renderCalmNotes();
   </script>
 </body>
 </html>
