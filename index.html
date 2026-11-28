@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Path of Peace | All 114 Surahs, Guidance, Kalmas & Custom Tasbih</title>
+  <title>Rah-E-Sukoon | Guidance, All 114 Surahs, Kalmas & Custom Tasbih</title>
   <style>
     :root {
       --bg: #f2f7f4;
@@ -462,7 +462,7 @@
   <div class="app">
     <header>
       <div>
-        <h1>Path of Peace</h1>
+        <h1>Rah-E-Sukoon</h1>
         <p>Guidance for every life moment, all 114 Surahs, Kalmas, Duas &amp; Custom Tasbih</p>
       </div>
       <div class="header-actions">
@@ -568,6 +568,7 @@
           <button type="button" class="btn btn-secondary" onclick="goToStep1()">Back</button>
           <button type="button" class="btn" onclick="analyzeProblem()">Get Complete Guidance</button>
         </div>
+
         <div id="step3" class="step">
           <div id="profileSummaryBadge" class="badge"></div>
           <h2 id="matchedTopicTitle"></h2>
@@ -661,6 +662,7 @@
           <div id="favoriteVersesList" class="saved-list"></div>
         </div>
       </div>
+
       <div id="kalmaTab" class="panel">
         <h2>Six Kalmas, Short Surahs &amp; Essential Recitations</h2>
         <p class="hint">Includes all Six Kalmas, Durood-e-Ibrahim, and Short Surahs with Arabic text and audio.</p>
@@ -887,6 +889,7 @@
       </div>
     </div>
   </div>
+
   <script>
     const ALL_SURAHS = [
       [1,"Al-Fatihah",7],[2,"Al-Baqarah",286],[3,"Ali 'Imran",200],[4,"An-Nisa",176],[5,"Al-Ma'idah",120],[6,"Al-An'am",165],
@@ -1280,349 +1283,4 @@
       return [...DEFAULT_DHIKR, ...custom];
     }
 
-    function renderDhikrDropdown(selectLast = false) {
-      const sel = document.getElementById("dhikrSelect");
-      const list = getAllDhikrList();
-      sel.innerHTML = list.map((d, idx) =>
-        `<option value="${idx}">${d.arabic} ${d.note ? "— " + d.note : ""}</option>`
-      ).join("");
-      if (selectLast) sel.selectedIndex = list.length - 1;
-      onDhikrSelectChange();
-    }
-
-    function addCustomDhikr() {
-      const text = document.getElementById("customDhikrInput").value.trim();
-      const note = document.getElementById("customDhikrNote").value.trim();
-      if (!text) return;
-
-      let custom = [];
-      try {
-        custom = JSON.parse(localStorage.getItem("pop_custom_dhikr") || "[]");
-      } catch (e) {
-        custom = [];
-      }
-      custom.push({ arabic: text, note: note || "Custom Remembrance" });
-      localStorage.setItem("pop_custom_dhikr", JSON.stringify(custom));
-
-      document.getElementById("customDhikrInput").value = "";
-      document.getElementById("customDhikrNote").value = "";
-      renderDhikrDropdown(true);
-    }
-
-    function onDhikrSelectChange() {
-      tasbihCounter = 0;
-      document.getElementById("tasbihCount").innerText = "0";
-      document.getElementById("tasbihMilestone").innerText = "";
-
-      const idx = parseInt(document.getElementById("dhikrSelect").value, 10) || 0;
-      const list = getAllDhikrList();
-      const chosen = list[idx] || DEFAULT_DHIKR[0];
-
-      document.getElementById("tasbihArabic").innerText = chosen.arabic;
-      document.getElementById("tasbihMeaning").innerText = chosen.note || "";
-    }
-
-    function incrementTasbih() {
-      tasbihCounter++;
-      document.getElementById("tasbihCount").innerText = tasbihCounter;
-      const target = parseInt(document.getElementById("tasbihTarget").value, 10) || 100;
-      const note = document.getElementById("tasbihMilestone");
-
-      if (tasbihCounter === target) {
-        note.innerText = `Target of ${target} reached! May your heart find peace.`;
-      } else {
-        note.innerText = `${tasbihCounter} / ${target}`;
-      }
-    }
-
-    function resetTasbih() {
-      tasbihCounter = 0;
-      document.getElementById("tasbihCount").innerText = "0";
-      document.getElementById("tasbihMilestone").innerText = "";
-    }
-
-    function speakCurrentDhikr() {
-      const text = document.getElementById("tasbihArabic").innerText;
-      speakArabic(text);
-    }
-
-    function cycleTheme() {
-      currentThemeIdx = (currentThemeIdx + 1) % themes.length;
-      document.body.className = themes[currentThemeIdx];
-    }
-
-    function switchTab(tabId, btnEl) {
-      stopAllAudio();
-      document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
-      document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
-      document.getElementById(tabId).classList.add("active");
-      if (btnEl) btnEl.classList.add("active");
-      renderFavorites();
-    }
-
-    function quickFillMood(text) {
-      document.getElementById("problemInput").value = text;
-    }
-
-    function formatGender(gender) {
-      if (gender === "female") return "Females";
-      if (gender === "male") return "Males";
-      return "All Genders";
-    }
-
-    function getGroupDetails(age, gender) {
-      let stage = "Youth & Adults";
-      let toneNote = "A respectful, calm space to share what is on your mind and explore clear, practical guidance.";
-
-      if (age < 13) {
-        stage = "Kids Space";
-        toneNote = "Welcome! You don't have to use big words here. Tell us what feels scary, upsetting, or confusing, and we'll keep things simple and kind.";
-      } else if (age >= 60) {
-        stage = "Elders Space";
-        toneNote = "Welcome with deep respect. This space is designed for comfort, dignity, peaceful recitation, and thoughtful reflection.";
-      }
-
-      return {
-        label: `${stage} • ${formatGender(gender)}`,
-        note: toneNote
-      };
-    }
-
-    function goToStep1() {
-      stopAllAudio();
-      showStep("step1");
-    }
-
-    function goToStep2() {
-      const ageVal = parseInt(document.getElementById("age").value, 10);
-      if (!ageVal || ageVal < 1 || ageVal > 120) {
-        alert("Please enter a valid age between 1 and 120.");
-        return;
-      }
-
-      profile = {
-        age: ageVal,
-        gender: document.getElementById("gender").value,
-        maritalStatus: document.getElementById("maritalStatus").value,
-        education: document.getElementById("education").value
-      };
-
-      const details = getGroupDetails(profile.age, profile.gender);
-      document.getElementById("groupBadge").innerText = details.label;
-      document.getElementById("toneBanner").innerText = details.note;
-      showStep("step2");
-    }
-
-    function findMatchingTopic(text) {
-      const lower = (text || "").toLowerCase();
-      let best = topics[topics.length - 1];
-      let bestScore = 0;
-
-      for (const t of topics) {
-        let score = 0;
-        for (const kw of t.keywords) {
-          if (lower.includes(kw)) score++;
-        }
-        if (score > bestScore) {
-          bestScore = score;
-          best = t;
-        }
-      }
-      return best;
-    }
-
-    function analyzeProblem() {
-      stopAllAudio();
-      const rawInput = document.getElementById("problemInput").value.trim();
-      const matched = findMatchingTopic(rawInput);
-      currentAyahCode = matched.ayahCode;
-      currentGuidanceDua = matched.duaArabic;
-
-      const details = getGroupDetails(profile.age, profile.gender);
-      document.getElementById("profileSummaryBadge").innerText =
-        `${details.label} • Age ${profile.age}`;
-
-      document.getElementById("matchedTopicTitle").innerText = matched.title;
-      document.getElementById("outReason").innerText = matched.reason;
-      document.getElementById("outSolution").innerText = matched.solution;
-      document.getElementById("outSteps").innerHTML = matched.steps.map(s => `<li>${s}</li>`).join("");
-      document.getElementById("outArabic").innerText = matched.arabic;
-      document.getElementById("outRef").innerText = `Reference: ${matched.ref}`;
-      document.getElementById("outTranslation").innerText = matched.translation;
-      document.getElementById("outDuaArabic").innerText = matched.duaArabic;
-      document.getElementById("outDuaMeaning").innerText = matched.duaMeaning;
-      document.getElementById("audioStatus").innerText = "";
-
-      showStep("step3");
-    }
-
-    function speakCurrentGuidanceDua() {
-      speakArabic(currentGuidanceDua);
-    }
-
-    function copyGuidanceText() {
-      const title = document.getElementById("matchedTopicTitle").innerText;
-      const reason = document.getElementById("outReason").innerText;
-      const solution = document.getElementById("outSolution").innerText;
-      const arabic = document.getElementById("outArabic").innerText;
-      const ref = document.getElementById("outRef").innerText;
-      const trans = document.getElementById("outTranslation").innerText;
-
-      const fullText = `${title}\n\nPerspective: ${reason}\n\nWay Forward: ${solution}\n\n${arabic}\n${ref}\n${trans}`;
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(fullText).then(() => {
-          document.getElementById("audioStatus").innerText = "Guidance copied to clipboard.";
-        });
-      }
-    }
-
-    function playGuidanceTilawat() {
-      stopSpeech();
-      const qari = document.getElementById("qariSelectGuidance").value;
-      const audioEl = document.getElementById("guidanceAudio");
-      const statusEl = document.getElementById("audioStatus");
-
-      audioEl.src = `https://everyayah.com/data/${qari}/${currentAyahCode}.mp3`;
-      statusEl.innerText = "Loading recitation...";
-      audioEl.play().then(() => {
-        statusEl.innerText = "Playing recitation.";
-      }).catch(() => {
-        statusEl.innerText = "Could not stream audio; playing fallback voice.";
-        speakArabic(document.getElementById("outArabic").innerText);
-      });
-    }
-
-    function speakArabic(text) {
-      if (!("speechSynthesis" in window)) return;
-      window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = "ar-SA";
-      u.rate = 0.88;
-      window.speechSynthesis.speak(u);
-    }
-
-    function speakGuidanceSummary() {
-      if (!("speechSynthesis" in window)) return;
-      window.speechSynthesis.cancel();
-      const translation = document.getElementById("outTranslation").innerText;
-      const reason = document.getElementById("outReason").innerText;
-      const solution = document.getElementById("outSolution").innerText;
-
-      const u = new SpeechSynthesisUtterance(`${translation}. Perspective: ${reason}. Way forward: ${solution}`);
-      u.lang = "en-US";
-      u.rate = 0.96;
-      window.speechSynthesis.speak(u);
-    }
-
-    function stopSpeech() {
-      if ("speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-      }
-    }
-
-    function stopAllAudio() {
-      stopSpeech();
-      ["guidanceAudio", "tabAudio", "modalAudio"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.pause();
-          el.currentTime = 0;
-        }
-      });
-    }
-
-    function startVoiceInput() {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const statusEl = document.getElementById("voiceStatus");
-
-      if (!SpeechRecognition) {
-        statusEl.innerText = "Voice input is not supported in this browser.";
-        return;
-      }
-
-      const recognition = new SpeechRecognition();
-      recognition.lang = "en-US";
-      recognition.interimResults = false;
-      statusEl.innerText = "Listening... please speak.";
-
-      recognition.onresult = function (event) {
-        const transcript = event.results[0][0].transcript;
-        document.getElementById("problemInput").value = transcript;
-        statusEl.innerText = "Captured your message.";
-      };
-
-      recognition.onerror = function () {
-        statusEl.innerText = "Couldn't hear clearly. Please try again.";
-      };
-
-      recognition.start();
-    }
-
-    function openInstantCalm() {
-      stopAllAudio();
-      document.getElementById("calmModal").classList.add("open");
-      startBreathingCycle();
-    }
-
-    function closeInstantCalm() {
-      document.getElementById("calmModal").classList.remove("open");
-      if (breathTimer) {
-        clearInterval(breathTimer);
-        breathTimer = null;
-      }
-      stopAllAudio();
-    }
-
-    function startBreathingCycle() {
-      if (breathTimer) clearInterval(breathTimer);
-
-      const phases = [
-        { name: "Breathe In", seconds: 4, scale: 1.15 },
-        { name: "Hold Gently", seconds: 4, scale: 1.15 },
-        { name: "Breathe Out", seconds: 6, scale: 0.92 }
-      ];
-
-      let phaseIndex = 0;
-      let remaining = phases[0].seconds;
-
-      const phaseEl = document.getElementById("breathPhase");
-      const countEl = document.getElementById("breathCount");
-      const circleEl = document.getElementById("breathCircle");
-
-      function updateUI() {
-        const p = phases[phaseIndex];
-        phaseEl.innerText = p.name;
-        countEl.innerText = `${remaining}s`;
-        circleEl.style.transform = `scale(${p.scale})`;
-      }
-
-      updateUI();
-
-      breathTimer = setInterval(() => {
-        remaining--;
-        if (remaining <= 0) {
-          phaseIndex = (phaseIndex + 1) % phases.length;
-          remaining = phases[phaseIndex].seconds;
-        }
-        updateUI();
-      }, 1000);
-    }
-
-    function playModalRecitation() {
-      const qari = document.getElementById("qariSelectGuidance")?.value || "Alafasy_128kbps";
-      const audioEl = document.getElementById("modalAudio");
-      audioEl.src = `https://everyayah.com/data/${qari}/094006.mp3`;
-      audioEl.play().catch(() => {});
-    }
-
-    function showStep(stepId) {
-      document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
-      document.getElementById(stepId).classList.add("active");
-    }
-
-    initSurahDropdown();
-    renderDhikrDropdown();
-    renderFavorites();
-  </script>
-</body>
-</html>
+    function renderDhikrDropdown(selectLast
