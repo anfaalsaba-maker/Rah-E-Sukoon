@@ -1130,7 +1130,25 @@
     function pad3(num) {
       return String(num).padStart(3, "0");
     }
+let autoPlaySurah = false;
 
+document.getElementById("tabAudio").addEventListener("ended", () => {
+  if (!autoPlaySurah) return;
+  const ayahSel = document.getElementById("ayahNumberSelect");
+  const surahSel = document.getElementById("surahSelect");
+
+  if (ayahSel.selectedIndex < ayahSel.options.length - 1) {
+    ayahSel.selectedIndex += 1;
+    loadSelectedAyahText();
+    playSurahAyahAudio();
+  } else if (surahSel.selectedIndex < surahSel.options.length - 1) {
+    surahSel.selectedIndex += 1;
+    onSurahChange();
+    playSurahAyahAudio();
+  } else {
+    autoPlaySurah = false;
+  }
+});
     function initSurahDropdown() {
       const surahSel = document.getElementById("surahSelect");
       surahSel.innerHTML = ALL_SURAHS.map(([num, name, ayahs]) =>
@@ -1179,6 +1197,7 @@
     }
 
     function playSurahAyahAudio() {
+    autoPlaySurah = true;
       stopSpeech();
       const surahNum = parseInt(document.getElementById("surahSelect").value, 10) || 1;
       const ayahNum = parseInt(document.getElementById("ayahNumberSelect").value, 10) || 1;
